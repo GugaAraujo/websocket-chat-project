@@ -1,0 +1,60 @@
+html {
+  background-image: linear-gradient(#d4daeb, #e6e3e3, white, #d6e0f3);
+  height: 610px;
+  display: flex;
+  justify-content: center;
+  font-family: "Work Sans", sans-serif;
+}
+
+input {
+  font-family: "Work Sans", sans-serif;
+  padding-left: 20px;
+  background: white;
+  border-radius: 10px;
+  border: 2px solid #6060f7;
+  color: #0c0a3a;
+  font-weight: bold;
+}
+
+.caixa_chat {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid #6060f7;
+  border-radius: 10px;
+  line-height: 25px;
+  height: 400px;
+  width: 1200px;
+}
+
+.caixa_ferramentas {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 1200px;
+}
+.caixa_ferramentas .input_username {
+  display: inline-flex;
+  margin: 10px 10px;
+  height: 30px;
+  width: 150px;
+}
+.caixa_ferramentas .input_message {
+  display: inline-flex;
+  margin: 10px 10px;
+  height: 30px;
+  width: 800px;
+}
+.caixa_ferramentas .enviar {
+  padding: 5px;
+  margin: 10px 5px;
+  font-size: 18px;
+  width: 130px;
+  height: 35px;
+  background: #6060f7;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #646499;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,61 @@
+html{
+    background-image: linear-gradient(rgb(212, 218, 235),rgb(230, 227, 227), white,rgb(214, 224, 243));
+    height: 610px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Work Sans', sans-serif;
+}
+input{
+    font-family: 'Work Sans', sans-serif;
+    padding-left: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid rgb(96, 96, 247);
+    color: rgb(12, 10, 58);
+    font-weight:bold;
+}
+
+.caixa_chat{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(96, 96, 247);
+    border-radius: 10px;
+    line-height: 25px;
+    height:400px;
+    width: 1200px;
+}
+.caixa_ferramentas{
+    display: flex;
+    flex-direction: row;
+    height:50px;
+    width: 1200px;
+
+    .input_username{
+        display: inline-flex;
+        margin: 10px 10px;
+        height: 30px;
+        width: 150px;
+    }
+    .input_message{
+        display: inline-flex;
+        margin: 10px 10px;
+        height: 30px;
+        width: 800px;
+    }
+    .enviar{
+        padding: 5px;
+        margin: 10px 5px;
+        font-size: 18px;
+        width: 130px;
+        height: 35px;
+        background: rgb(96, 96, 247);
+        color: white;
+        border-radius: 10px;
+        border: 1px solid rgb(100, 100, 153);;
+    }
+
+    
+}
+
+
