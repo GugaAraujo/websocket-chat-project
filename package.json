@@ -17,5 +17,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GugaAraujo/Chat-websocket.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GugaAraujo/Chat-websocket/issues"
+  },
+  "homepage": "https://github.com/GugaAraujo/Chat-websocket#readme",
   "description": ""
 }

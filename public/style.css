@@ -5,6 +5,12 @@ html {
   justify-content: center;
   font-family: "Work Sans", sans-serif;
 }
+@media (max-width: 599px) {
+  html {
+    position: fixed;
+    height: 950px;
+  }
+}
 
 input {
   font-family: "Work Sans", sans-serif;
@@ -14,6 +20,11 @@ input {
   border: 2px solid #6060f7;
   color: #0c0a3a;
   font-weight: bold;
+}
+@media (max-width: 599px) {
+  input {
+    padding-left: 10px;
+  }
 }
 
 .caixa_chat {
@@ -26,12 +37,35 @@ input {
   height: 400px;
   width: 1200px;
 }
+@media (max-width: 599px) {
+  .caixa_chat {
+    width: 350px;
+  }
+}
 
 .caixa_ferramentas {
   display: flex;
   flex-direction: row;
   height: 50px;
   width: 1200px;
+}
+@media (max-width: 599px) {
+  .caixa_ferramentas {
+    text-align: center;
+    display: inline-table;
+    height: 400px;
+    width: 400px;
+  }
+}
+.caixa_ferramentas .color {
+  margin: 10px 10px;
+  height: 35px;
+  width: 50px;
+}
+@media (max-width: 599px) {
+  .caixa_ferramentas .color {
+    padding-left: 10;
+  }
 }
 .caixa_ferramentas .input_username {
   display: inline-flex;
@@ -44,6 +78,13 @@ input {
   margin: 10px 10px;
   height: 30px;
   width: 800px;
+}
+@media (max-width: 599px) {
+  .caixa_ferramentas .input_message {
+    margin-right: 35px;
+    width: 340px;
+    height: 90px;
+  }
 }
 .caixa_ferramentas .enviar {
   padding: 5px;
