@@ -7,8 +7,7 @@ var botao_color = document.getElementById("color")
 botao_color.value = "#000000"
 let cor_escolhida = ""
 
-const dataAtual = new Date();
-const hora = dataAtual.toLocaleTimeString().split(1,2)
+
 
 
 
@@ -73,12 +72,20 @@ socket.on("receivedMessage", function(message){
 
 
 function render_mensagem_recebida(message){
+    let dataAtual = new Date();
+let hora = dataAtual.toLocaleTimeString()
     $('.caixa_chat').append(`<div class="message"><span style="color:#a2a2a2;font-size:12px">${hora} - </span><strong><span style="color:${message.color}">${message.author}</span></strong>: <span style="padding-left:10px">${message.message}</span></div>`)
+    var myDiv = document.getElementById("caixa_chat");
+    myDiv.scrollTop = myDiv.scrollHeight;
 }
 
 
 function render_mensagem_Enviada(message){
+    let dataAtual = new Date();
+let hora = dataAtual.toLocaleTimeString()
     $('.caixa_chat').append(`<div class="message"><span style="color:#a2a2a2;font-size:12px">${hora} - </span><strong><span style="color:${cor_escolhida}">${message.author}</span></strong>: <span style="padding-left:10px">${message.message}</span></div>`)
+var myDiv = document.getElementById("caixa_chat");
+    myDiv.scrollTop = myDiv.scrollHeight;
 }
 
 

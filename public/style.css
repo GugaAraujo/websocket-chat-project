@@ -1,14 +1,59 @@
 html {
-  background-image: linear-gradient(#d4daeb, #e6e3e3, white, #d6e0f3);
+  background-image: linear-gradient(170deg, #383838, #4d4d4d, #363636, #2f3030);
   height: 610px;
   display: flex;
   justify-content: center;
   font-family: "Work Sans", sans-serif;
+  overflow-y: hidden;
 }
 @media (max-width: 599px) {
   html {
     position: fixed;
-    height: 950px;
+    height: 900px;
+  }
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #38383a #d3d2d1;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #d3d2d1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #38383a;
+  border-radius: 20px;
+  border: 3px solid #d3d2d1;
+}
+
+.caixa_chat {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-image: linear-gradient(75deg, rgba(255, 255, 255, 0.947), rgba(247, 241, 241, 0.905), rgba(247, 241, 241, 0.805));
+  border-radius: 15px;
+  border: solid rgba(243, 243, 243, 0.788) 1px;
+  line-height: 25px;
+  height: 400px;
+  width: 1000px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+@media (max-width: 599px) {
+  .caixa_chat {
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 300px;
   }
 }
 
@@ -17,7 +62,7 @@ input {
   padding-left: 20px;
   background: white;
   border-radius: 10px;
-  border: 2px solid #6060f7;
+  border: solid rgba(243, 243, 243, 0.788) 1px;
   color: #0c0a3a;
   font-weight: bold;
 }
@@ -27,43 +72,28 @@ input {
   }
 }
 
-.caixa_chat {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: white;
-  border: 2px solid #6060f7;
-  border-radius: 10px;
-  line-height: 25px;
-  height: 400px;
-  width: 1200px;
-}
-@media (max-width: 599px) {
-  .caixa_chat {
-    width: 350px;
-  }
-}
-
 .caixa_ferramentas {
   display: flex;
-  flex-direction: row;
   height: 50px;
-  width: 1200px;
 }
 @media (max-width: 599px) {
   .caixa_ferramentas {
     text-align: center;
     display: inline-table;
-    height: 400px;
-    width: 400px;
   }
 }
 .caixa_ferramentas .color {
+  display: inline-flex;
   margin: 10px 10px;
   height: 35px;
   width: 50px;
+  padding-left: 5px;
 }
 @media (max-width: 599px) {
   .caixa_ferramentas .color {
+    position: relative;
+    top: 7px;
+    margin: 0 5px;
     padding-left: 10;
   }
 }
@@ -71,31 +101,64 @@ input {
   display: inline-flex;
   margin: 10px 10px;
   height: 30px;
-  width: 150px;
+  width: 60px;
+}
+@media (max-width: 599px) {
+  .caixa_ferramentas .input_username {
+    width: 135px;
+    margin: 0 5px;
+  }
 }
 .caixa_ferramentas .input_message {
   display: inline-flex;
   margin: 10px 10px;
   height: 30px;
-  width: 800px;
+  width: 710px;
 }
 @media (max-width: 599px) {
   .caixa_ferramentas .input_message {
-    margin-right: 35px;
-    width: 340px;
-    height: 90px;
+    margin-top: 15px;
+    width: 330px;
+    height: 55px;
   }
 }
 .caixa_ferramentas .enviar {
   padding: 5px;
   margin: 10px 5px;
   font-size: 18px;
-  width: 130px;
+  width: 120px;
   height: 35px;
-  background: #6060f7;
+  background: rgba(114, 114, 236, 0.801);
   color: white;
   border-radius: 10px;
   border: 1px solid #646499;
+}
+@media (max-width: 599px) {
+  .caixa_ferramentas .enviar {
+    margin: 0 5px;
+  }
+}
+
+.erro_form {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  height: 30px;
+  padding-top: 15px;
+  border-radius: 5px;
+  background: #e6c9bf;
+  text-align: center;
+  color: #f72828;
+}
+@media (max-width: 599px) {
+  .erro_form {
+    font-size: 14px;
+    padding-top: 5px;
+    margin-top: 10px;
+    height: 25px;
+    width: 335px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
