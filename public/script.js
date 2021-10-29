@@ -1,7 +1,7 @@
 
 
 
-const socket = io("https://websocket-chat-project.herokuapp.com/")
+const socket = io(location.origin.replace(/^http/, 'ws'))
 const botao = document.getElementById("enviar")
 var botao_color = document.getElementById("color")
 botao_color.value = "#000000"

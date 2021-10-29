@@ -7,7 +7,6 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
 const porta = process.env.PORT || 3000 
-const host = process.env.websocket-chat-project ? `https://${process.env.websocket-chat-project}.heroku.com` : "htpp://localhost"
 
 app.use(express.static(path.join(__dirname,"public")))
 app.set('views',path.join(__dirname,"public"))
@@ -32,10 +31,7 @@ io.on("connection",socket =>{
 })
 
 server.listen(porta, ()=>{
-    const portaStr = porta === 80 ? '' : ':' + porta
-    if(process.env.websocket-chat-project){
-        console.log("Servidor iniciado. Abra o navegador em " + host)
-    }else{
-    console.log(`Conectado à porta: ${porta}`)
-    }
+
+    console.log(`Conectado!`)
+    
 })
