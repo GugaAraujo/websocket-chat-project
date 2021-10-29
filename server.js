@@ -35,3 +35,8 @@ server.listen(porta, ()=>{
     console.log(`Conectado!`)
     
 })
+
+
+setInterval(() => {
+    messages.shift()
+}, 120000);
