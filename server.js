@@ -6,6 +6,8 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
+const porta = process.env.PORT || 3231
+
 app.use(express.static(path.join(__dirname,"public")))
 app.set('views',path.join(__dirname,"public"))
 app.engine("html",require("ejs").renderFile)
@@ -28,4 +30,6 @@ io.on("connection",socket =>{
     })
 })
 
-server.listen(3000)
+server.listen(porta, ()=>{
+    console.log(`Conectado à porta: ${porta}`)
+})

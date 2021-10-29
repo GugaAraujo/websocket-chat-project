@@ -1,7 +1,7 @@
 
 
 
-const socket = io("http://192.168.15.9:3000")
+const socket = io("/ ")
 const botao = document.getElementById("enviar")
 var botao_color = document.getElementById("color")
 botao_color.value = "#000000"
@@ -30,8 +30,7 @@ botao.addEventListener("click",(event)=>{
         render_mensagem_Enviada(messageObject)
 
         socket.emit('sendMessage', messageObject)
-        console.log(messageObject)
-    
+        message.value =""
 })
 
 window.document.addEventListener('keyup', function(event){
