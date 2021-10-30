@@ -62,7 +62,7 @@ html {
   margin-right: auto;
   padding: 20px;
   background-image: linear-gradient(75deg, rgba(255, 255, 255, 0.947), rgba(247, 241, 241, 0.905), rgba(247, 241, 241, 0.805));
-  border-radius: 15px;
+  border-radius: 5px;
   border: solid rgba(243, 243, 243, 0.788) 1px;
   height: 400px;
   width: 500px;
@@ -99,8 +99,49 @@ html {
 }
 
 .saudacao {
-  margin-bottom: 5px;
-  line-height: 10px;
+  margin-bottom: 10px;
+  color: #a2a2a2;
+  font-size: 14px;
+}
+@media (max-width: 319.9px) {
+  .saudacao {
+    font-size: 18px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .saudacao {
+    font-size: 18px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .saudacao {
+    font-size: 18px;
+  }
+}
+
+.aviso {
+  margin-bottom: 10px;
+  line-height: 15px;
+  color: #a2a2a2;
+  font-size: 12px;
+}
+@media (max-width: 319.9px) {
+  .aviso {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .aviso {
+    line-height: 18px;
+    font-size: 16px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .aviso {
+    line-height: 18px;
+    font-size: 16px;
+  }
 }
 
 input {

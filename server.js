@@ -21,7 +21,7 @@ var messages = [];
 const intervalo_remocacao_frases = 120000
 
 const saudacao = `Seja bem vindo! &#128516`
-const aviso = `A cada ${intervalo_remocacao_frases/60000} minutos, uma frase é removida do topo do chat. Nada ficará gravado por muito tempo.`
+const aviso = `A cada ${intervalo_remocacao_frases/60000} minutos, uma frase é removida no histórico do chat. Nada ficará gravado por muito tempo.`
 
 
 io.on("connection",socket =>{
