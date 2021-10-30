@@ -287,4 +287,16 @@ input{
         width: 335px;
     }
 }
+footer{
+    padding-top: 20px;
+    text-align: center;
+    a{
+        text-decoration: none;
+        color: cornflowerblue;
+        &:visited{
+            color: cornflowerblue;
+        }
+    }
+
+}
 

@@ -333,4 +333,16 @@ input {
   }
 }
 
+footer {
+  padding-top: 20px;
+  text-align: center;
+}
+footer a {
+  text-decoration: none;
+  color: cornflowerblue;
+}
+footer a:visited {
+  color: cornflowerblue;
+}
+
 /*# sourceMappingURL=style.css.map */
