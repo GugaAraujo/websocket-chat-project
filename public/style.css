@@ -1,15 +1,37 @@
 html {
   background-image: linear-gradient(170deg, #383838, #4d4d4d, #363636, #2f3030);
+  background-size: cover;
   height: 610px;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   font-family: "Work Sans", sans-serif;
   overflow-y: hidden;
 }
-@media (max-width: 599px) {
+@media (max-width: 319.9px) {
   html {
     position: fixed;
+    width: 100%;
     height: 900px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  html {
+    position: fixed;
+    width: 100%;
+    height: 900px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  html {
+    position: fixed;
+    width: 530px;
+    height: 900px;
+  }
+}
+@media (min-width: 600px) and (max-width: 899.9px) {
+  html {
+    width: 700px;
   }
 }
 
@@ -42,19 +64,43 @@ html {
   background-image: linear-gradient(75deg, rgba(255, 255, 255, 0.947), rgba(247, 241, 241, 0.905), rgba(247, 241, 241, 0.805));
   border-radius: 15px;
   border: solid rgba(243, 243, 243, 0.788) 1px;
-  line-height: 25px;
   height: 400px;
-  width: 1000px;
+  width: 500px;
   overflow: scroll;
   overflow-x: hidden;
 }
-@media (max-width: 599px) {
+@media (max-width: 319.9px) {
+  .caixa_chat {
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 220px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .caixa_chat {
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 260px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_chat {
     margin-left: auto;
     margin-right: auto;
     height: 200px;
     width: 300px;
   }
+}
+
+.message {
+  margin-bottom: 8px;
+}
+
+.saudacao {
+  margin-bottom: 5px;
+  line-height: 10px;
 }
 
 input {
@@ -66,7 +112,7 @@ input {
   color: #0c0a3a;
   font-weight: bold;
 }
-@media (max-width: 599px) {
+@media (min-width: 420px) and (max-width: 599.9px) {
   input {
     padding-left: 10px;
   }
@@ -75,47 +121,112 @@ input {
 .caixa_ferramentas {
   display: flex;
   height: 50px;
+  width: 557px;
 }
-@media (max-width: 599px) {
+@media (max-width: 319.9px) {
   .caixa_ferramentas {
+    width: 220;
+    text-align: center;
+    display: inline-table;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .caixa_ferramentas {
+    width: 260;
+    text-align: center;
+    display: inline-table;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .caixa_ferramentas {
+    width: 0;
     text-align: center;
     display: inline-table;
   }
 }
 .caixa_ferramentas .color {
   display: inline-flex;
-  margin: 10px 10px;
+  margin: 10px 0;
   height: 35px;
-  width: 50px;
+  width: 60px;
   padding-left: 5px;
 }
-@media (max-width: 599px) {
+@media (max-width: 319.9px) {
   .caixa_ferramentas .color {
+    width: 25px;
+    position: relative;
+    top: 8px;
+    margin: 0 5px;
+    padding-left: 2px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .caixa_ferramentas .color {
+    width: 30px;
+    position: relative;
+    top: 8px;
+    margin: 0 5px;
+    padding-left: 3px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .caixa_ferramentas .color {
+    width: 40px;
     position: relative;
     top: 7px;
     margin: 0 5px;
-    padding-left: 10;
+    padding-left: 7;
   }
 }
 .caixa_ferramentas .input_username {
   display: inline-flex;
   margin: 10px 10px;
   height: 30px;
-  width: 60px;
+  width: 70px;
 }
-@media (max-width: 599px) {
+@media (max-width: 319.9px) {
+  .caixa_ferramentas .input_username {
+    width: 88px;
+    margin: 0 5px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .caixa_ferramentas .input_username {
+    width: 120px;
+    margin: 0 5px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .input_username {
     width: 135px;
     margin: 0 5px;
   }
 }
 .caixa_ferramentas .input_message {
-  display: inline-flex;
+  display: block;
   margin: 10px 10px;
   height: 30px;
-  width: 710px;
+  width: 600px;
 }
-@media (max-width: 599px) {
+@media (max-width: 319.9px) {
+  .caixa_ferramentas .input_message {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 235px;
+    height: 55px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .caixa_ferramentas .input_message {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 275px;
+    height: 55px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .input_message {
     margin-top: 15px;
     width: 330px;
@@ -133,7 +244,19 @@ input {
   border-radius: 10px;
   border: 1px solid #646499;
 }
-@media (max-width: 599px) {
+@media (max-width: 319.9px) {
+  .caixa_ferramentas .enviar {
+    width: 90px;
+    margin: 0 5px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .caixa_ferramentas .enviar {
+    width: 90px;
+    margin: 0 5px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .enviar {
     margin: 0 5px;
   }
@@ -151,7 +274,16 @@ input {
   text-align: center;
   color: #f72828;
 }
-@media (max-width: 599px) {
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .erro_form {
+    font-size: 14px;
+    padding-top: 5px;
+    margin-top: 10px;
+    height: 25px;
+    width: 335px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
   .erro_form {
     font-size: 14px;
     padding-top: 5px;

@@ -18,11 +18,20 @@ app.use("/",(req, res)=>{
 })
 
 var messages = [];
+const intervalo_remocacao_frases = 120000
+
+const saudacao = `Seja bem vindo! &#128516`
+const aviso = `A cada ${intervalo_remocacao_frases/60000} minutos, uma frase é removida do topo do chat. Nada ficará gravado por muito tempo.`
 
 
 io.on("connection",socket =>{
     console.log(`Socket conectado:${socket.id}`)
     socket.emit('mensagensAnteriores',messages)
+    socket.emit('entrada',saudacao)
+    setTimeout(()=>{
+        socket.emit('aviso',aviso)
+    },2000)
+
     socket.on('sendMessage', data =>{
         messages.push(data)
         console.log(messages)
@@ -39,4 +48,4 @@ server.listen(porta, ()=>{
 
 setInterval(() => {
     messages.shift()
-}, 120000);
+}, intervalo_remocacao_frases);

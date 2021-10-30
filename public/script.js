@@ -55,6 +55,12 @@ window.document.addEventListener('keyup', function(event){
 });
 
 
+socket.on("entrada", function(saudacao,aviso){
+    $('.caixa_chat').append(`<div class="saudacao"><span style="color:#a2a2a2;font-size:12px">${saudacao}</span></div>`)
+})
+socket.on("aviso", function(aviso){
+    $('.caixa_chat').append(`<div class="saudacao"><span style="color:#a2a2a2;font-size:10px">${aviso}</span></div>`)
+})
 
 socket.on("mensagensAnteriores", function(messages){
     for (message of messages){
