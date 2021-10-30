@@ -261,10 +261,11 @@ input{
     } 
 }
 .erro_form{
+    font-size: 14px; 
     display: none;
     margin-left: auto;
     margin-right: auto;
-    width: 800px;
+    width: 99%;
     height: 30px;
     padding-top: 15px;
     border-radius: 5px;
@@ -272,14 +273,14 @@ input{
     text-align: center;
     color: rgb(247, 40, 40);
     @include phone1{
-        font-size: 14px; 
+
         padding-top: 5px;
         margin-top: 10px;
         height: 25px;
         width: 335px;
     }
     @include phone2{
-        font-size: 14px; 
+ 
         padding-top: 5px;
         margin-top: 10px;
         height: 25px;

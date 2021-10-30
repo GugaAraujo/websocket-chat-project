@@ -304,10 +304,11 @@ input {
 }
 
 .erro_form {
+  font-size: 14px;
   display: none;
   margin-left: auto;
   margin-right: auto;
-  width: 800px;
+  width: 99%;
   height: 30px;
   padding-top: 15px;
   border-radius: 5px;
@@ -317,7 +318,6 @@ input {
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   .erro_form {
-    font-size: 14px;
     padding-top: 5px;
     margin-top: 10px;
     height: 25px;
@@ -326,7 +326,6 @@ input {
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .erro_form {
-    font-size: 14px;
     padding-top: 5px;
     margin-top: 10px;
     height: 25px;
