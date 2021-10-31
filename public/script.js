@@ -53,12 +53,16 @@ window.document.addEventListener('keyup', function(event){
                 color: cor_escolhida,
             }
     
-            render_mensagem_Enviada(messageObject)
+     
+            if(message.value.length>0&&author.value.length>0){
+                msgm_erro_form.style.display = "none"
+                render_mensagem_Enviada(messageObject)
     
-            socket.emit('sendMessage', messageObject)
-       
-
-        message.value =""
+                socket.emit('sendMessage', messageObject)
+                message.value =""
+            }else{
+                msgm_erro_form.style.display = "block"
+            }
       }
 });
 
