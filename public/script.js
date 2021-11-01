@@ -80,6 +80,9 @@ socket.on("mensagensAnteriores", function(messages){
     }
 })
 
+socket.on("testa_conexao",(testa_conexao)=>{
+    socket.emit("resposta_conexao",testa_conexao)
+})
 
 socket.on("receivedMessage", function(message){
     render_mensagem_recebida(message)
