@@ -1,3 +1,104 @@
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.789);
+}
+
+.modal-content {
+  text-align: center;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  width: 30%;
+  border: 3px solid rgba(43, 43, 117, 0.801);
+  border-radius: 10px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.947), rgba(247, 241, 241, 0.905), rgba(247, 241, 241, 0.805));
+}
+@media (max-width: 319.9px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .modal-content {
+    width: 70%;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .modal-content {
+    width: 70%;
+  }
+}
+@media (min-width: 600px) and (max-width: 899.9px) {
+  .modal-content {
+    width: 40%;
+  }
+}
+.modal-content h4 {
+  color: rgba(43, 43, 117, 0.801);
+  text-shadow: #d3d3ff 0.5px 0.5px 0px;
+}
+
+.close {
+  color: #aaa;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Work Sans", sans-serif;
+  padding: 5px;
+  background: rgba(114, 114, 236, 0.801);
+  color: white;
+  border: 1px solid #646499;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.color {
+  height: 20px;
+  width: 40px;
+  padding: 0;
+}
+
+.input_username {
+  position: relative;
+  margin-bottom: 10px;
+  bottom: 6px;
+  height: 20px;
+  width: 190px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px rgba(43, 43, 117, 0.801) solid;
+}
+@media (max-width: 319.9px) {
+  .input_username {
+    font-size: 12px;
+    width: 140px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .input_username {
+    font-size: 14px;
+    width: 150px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .input_username {
+    font-size: 14px;
+    width: 150px;
+  }
+}
+
 html {
   background-image: linear-gradient(#383838, #4d4d4d, #363636, #2f3030, #383838);
   background-size: cover;
@@ -30,6 +131,22 @@ html {
   }
 }
 
+h1 {
+  padding-top: 10px;
+  text-align: center;
+  margin: 3px auto;
+  font-size: 22px;
+  color: rgba(114, 114, 236, 0.801);
+  text-shadow: #d3d3ff 0.5px 0.5px 0px;
+}
+
+p {
+  text-align: center;
+  font-size: 12px;
+  color: white;
+  padding: 2px auto;
+}
+
 *:focus {
   outline: none;
 }
@@ -57,40 +174,28 @@ html {
 
 .box {
   width: 500px;
-  height: 458px;
+  height: 400px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
 }
-.box h1 {
-  text-align: center;
-  margin: 3px auto;
-  font-size: 22px;
-  color: rgba(114, 114, 236, 0.801);
-  text-shadow: #d3d3ff 0.5px 0.5px 0px;
-}
-.box p {
-  font-size: 14px;
-  color: white;
-  margin: 3px auto;
-}
 @media (max-width: 319.9px) {
   .box {
-    width: 250px;
-    height: 385px;
+    width: 270px;
+    height: 305px;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   .box {
-    width: 300px;
-    height: 360px;
+    width: 350px;
+    height: 305px;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .box {
     width: 400px;
-    height: 360px;
+    height: 300px;
   }
 }
 
@@ -184,55 +289,58 @@ input {
   max-height: 40px;
   max-width: 100%;
 }
-.caixa_ferramentas .color {
-  max-height: 100%;
-  width: 6%;
-  padding: 1px;
-}
-.caixa_ferramentas .input_username {
-  max-height: 100%;
-  width: 15%;
-}
-@media (max-width: 319.9px) {
-  .caixa_ferramentas .input_username {
-    font-size: 12px;
-  }
-}
-@media (min-width: 320px) and (max-width: 419.9px) {
-  .caixa_ferramentas .input_username {
-    font-size: 14px;
-  }
-}
-@media (min-width: 420px) and (max-width: 599.9px) {
-  .caixa_ferramentas .input_username {
-    font-size: 14px;
-  }
-}
 .caixa_ferramentas .input_message {
   max-height: 100%;
-  width: 55%;
+  width: 75%;
 }
 @media (max-width: 319.9px) {
   .caixa_ferramentas .input_message {
     font-size: 12px;
-    width: 50%;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   .caixa_ferramentas .input_message {
     font-size: 14px;
-    width: 53%;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .input_message {
     font-size: 14px;
-    width: 53%;
+  }
+}
+.caixa_ferramentas .btn_username {
+  text-align: center;
+  font-family: "Work Sans", sans-serif;
+  background: white;
+  max-height: 100%;
+  width: 5%;
+  border-radius: 0;
+  border: solid rgba(157, 154, 154, 0.788) 1px;
+}
+.caixa_ferramentas .btn_username i {
+  font-size: 12px;
+}
+@media (max-width: 319.9px) {
+  .caixa_ferramentas .btn_username {
+    font-size: 12px;
+    width: 10%;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .caixa_ferramentas .btn_username {
+    font-size: 14px;
+    width: 7%;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .caixa_ferramentas .btn_username {
+    font-size: 14px;
+    width: 7%;
   }
 }
 .caixa_ferramentas .enviar {
   font-size: 14px;
-  width: 28%;
+  width: 20%;
   max-width: 100%;
   max-height: 100%;
   background: rgba(114, 114, 236, 0.801);
@@ -248,13 +356,13 @@ input {
 @media (min-width: 320px) and (max-width: 419.9px) {
   .caixa_ferramentas .enviar {
     font-size: 14px;
-    width: 20%;
+    width: 23%;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .enviar {
     font-size: 14px;
-    width: 20%;
+    width: 25%;
   }
 }
 

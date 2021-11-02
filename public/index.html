@@ -19,17 +19,29 @@
     content="Chat desenvolvido com a biblioteca Socket.io. Veja mais em: " />
     <link rel="shortcut icon" type="image/x-icon" href="img/icon.ico" />
     <link rel="stylesheet" href="style.css">
+
+
+    <link
+    async defer
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+    />
+
 </head>
 <body>
+    <H1>Websocket Chat Project</H1>
+    <p>Total online: <span class="placar total_online" id="total_online"></span> | Record online: <span class="placar record_online" id="record_online"></span></p>
     <div class="box">
-        <H1>Websocket Chat Project</H1>
-        <p>Total online: <span class="placar total_online" id="total_online"></span> | Record online: <span class="placar record_online" id="record_online"></span></p>
+  
         <form id="chat">
             <div class="caixa_chat" id="caixa_chat">  
             </div>
             <div class="caixa_ferramentas">
-                <input type="color" name="color" id="color" class="color">
-                <input type="text" class="input_username" id="input_username" name="input_username" placeholder="Nome">
+             
+                <button type="text" class="btn_username"  id="btn_username" name="btn_username" placeholder="Nome">
+                    <i class="fas fa-user-edit"></i></button>
                 <input type="text" class="input_message" id="input_message" name="input_message" placeholder="Mensagem">  
                <button type="submit" id="enviar" class="enviar">Enviar</button>
             </div>
@@ -40,6 +52,17 @@
     </div>
 
 
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h4>Digite seu nome e participe do chat</h4>
+        <input type="text" class="input_username" id="input_username" name="input_username" placeholder="Nome" maxlength="30">
+        🎨<input type="color" name="color" id="color" class="color">
+        <div>
+            <span class="close" id="close">ENTRAR</span>
+        </div>
+   
+        </div>
+    </div>
 
     <footer>
         <a href="https://www.guga-araujo.dev.br" target="_blank">www.guga-araujo.dev.br</a>

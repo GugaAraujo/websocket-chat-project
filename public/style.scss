@@ -1,20 +1,6 @@
-@mixin phone {
-    @media (max-width: 319.9px) { @content; }
-}
-@mixin phone1 {
-    @media (min-width: 320px) and (max-width: 419.9px) { @content; }
-}
-@mixin phone2 {
-    @media (min-width: 420px) and(max-width: 599.9px) { @content; }
-}
-@mixin tablet {
-    @media (min-width: 600px) and (max-width: 899.9px)  { @content; }
-}
 
-@mixin desktop {
-    @media (min-width: 900px) and (max-width: 2000px) { @content; }
-}
-
+@import 'respons.scss';
+@import 'modal.scss';
 
 
 html{
@@ -40,6 +26,22 @@ html{
         height: 900px;
     }
     
+}
+
+
+h1{
+    padding-top: 10px;
+    text-align: center;
+    margin: 3px auto;
+    font-size: 22px;
+    color: rgba(114, 114, 236, 0.801);
+    text-shadow: rgb(211, 211, 255) 0.5px  0.5px 0px;
+}
+p{
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    padding: 2px auto;
 }
 
 *:focus {
@@ -69,37 +71,25 @@ html{
 
 
 .box{
+
 width: 500px;
-height:458px;
+height:400px;
 margin-left: auto;
 margin-right: auto;
 display: flex;
 flex-direction: column;
 
-h1{
-    text-align: center;
-    margin: 3px auto;
-    font-size: 22px;
-    color: rgba(114, 114, 236, 0.801);
-    text-shadow: rgb(211, 211, 255) 0.5px  0.5px 0px;
-}
-p{
-    font-size: 14px;
-    color: white;
-   margin: 3px auto;
-}
-
 @include phone{
-    width: 250px;
-    height: 385px;
+    width: 270px;
+    height: 305px;
 }
 @include phone1{
-    width: 300px;
-    height: 360px;
+    width: 350px;
+    height: 305px;
 }
 @include phone2{
     width: 400px;
-    height: 360px;
+    height: 300px;
 }
 }
 
@@ -168,43 +158,46 @@ input{
     max-height:40px;
     max-width: 100%;
 
-    .color{
-        max-height: 100%;
-        width: 6%;
-        padding: 1px;
-    }
-    .input_username{
-        max-height: 100%;
-        width: 15%;
-        @include phone{
-            font-size: 12px;
-        }
-        @include phone1{
-            font-size: 14px;
-        }
-        @include phone2{
-            font-size: 14px;
-        }
-    }
     .input_message{
         max-height: 100%;
-        width: 55%;
+        width: 75%;
         @include phone{
             font-size: 12px;
-            width: 50%;
         }
         @include phone1{
             font-size: 14px;
-            width: 53%;
         }
         @include phone2{
             font-size: 14px;
-            width: 53%;
+        }
+    }
+    .btn_username{
+        text-align: center;
+        font-family: 'Work Sans', sans-serif;
+        background: white;
+        max-height: 100%;
+        width: 5%;
+        border-radius: 0;
+        border: solid rgba(157, 154, 154, 0.788) 1px;
+        i{
+            font-size: 12px;
+        }
+        @include phone{
+            font-size: 12px;
+            width: 10%;
+        }
+        @include phone1{
+            font-size: 14px;
+            width: 7%;
+        }
+        @include phone2{
+            font-size: 14px;
+            width: 7%;
         }
     }
     .enviar{
         font-size: 14px;
-        width: 28% ;
+        width: 20% ;
         max-width: 100%;
         max-height: 100%;
         background: rgba(114, 114, 236, 0.801);
@@ -216,11 +209,11 @@ input{
         }
         @include phone1{
             font-size: 14px;
-            width: 20%;
+            width: 23%;
         }
         @include phone2{
             font-size: 14px;
-            width: 20%;
+            width: 25%;
         }
     } 
 }
