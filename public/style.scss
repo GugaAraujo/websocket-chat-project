@@ -18,36 +18,33 @@
 
 
 html{
-    background-image: linear-gradient(170deg,rgb(56, 56, 56),rgb(77, 77, 77), rgb(54, 54, 54),rgb(47, 48, 48));
+    background-image: linear-gradient(rgb(56, 56, 56),rgb(77, 77, 77), rgb(54, 54, 54),rgb(47, 48, 48),rgb(56, 56, 56));
     background-size: cover;
-    height: 610px;
+    background-repeat: repeat;
+    height: 900px;
     width: 100%;
     display: flex;
     justify-content: space-around;
     font-family: 'Work Sans', sans-serif;
     overflow-y: hidden;
     @include phone{
-        position: fixed;
-        width: 100%;
         height: 900px;
     }
     @include phone1{
-        position: fixed;
-        width: 100%;
         height: 900px;
     }
- 
     @include phone2{
-        position: fixed;
-        width: 530px;
         height: 900px;
     }
-    @include tablet(){
-        width: 700px;
+    @include tablet{
+        height: 900px;
     }
     
 }
 
+*:focus {
+    outline: none;
+}
 
 /* Works on Firefox */
 * {
@@ -71,35 +68,58 @@ html{
   }
 
 
+.box{
+width: 500px;
+height:458px;
+margin-left: auto;
+margin-right: auto;
+display: flex;
+flex-direction: column;
+
+h1{
+    text-align: center;
+    margin: 3px auto;
+    font-size: 22px;
+    color: rgba(114, 114, 236, 0.801);
+    text-shadow: rgb(211, 211, 255) 0.5px  0.5px 0px;
+}
+p{
+    font-size: 14px;
+    color: white;
+   margin: 3px auto;
+}
+
+@include phone{
+    width: 250px;
+    height: 385px;
+}
+@include phone1{
+    width: 300px;
+    height: 360px;
+}
+@include phone2{
+    width: 400px;
+    height: 360px;
+}
+}
+
 .caixa_chat{ 
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin:0;
     padding: 20px;
-    background-image: linear-gradient(75deg,rgba(255, 255, 255, 0.947),rgba(247, 241, 241, 0.905),rgba(247, 241, 241, 0.805));
-    border-radius: 5px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.947),rgba(247, 241, 241, 0.905),rgba(247, 241, 241, 0.805));
     border: solid rgba(243, 243, 243, 0.788) 1px;
-    height:400px;
-    width: 500px;
+    height:300px;
+    max-width: 100%;
     overflow:scroll;
     overflow-x: hidden;
     @include phone{
-        margin-left: auto;
-        margin-right: auto;
         height:200px;
-        width: 220px;
     }
     @include phone1{
-        margin-left: auto;
-        margin-right: auto;
         height:200px;
-        width: 260px;
     }
     @include phone2{
-        margin-left: auto;
-        margin-right: auto;
         height:200px;
-        width: 300px;
     }
 }
 .message{
@@ -134,166 +154,97 @@ margin-bottom: 8px;
     }
 }
 
-input{
+input{ 
     font-family: 'Work Sans', sans-serif;
-    padding-left: 20px;
+    padding-left: 5px;
     background: white;
-    border-radius: 10px;
-    border: solid rgba(243, 243, 243, 0.788) 1px;
+    border: solid rgba(157, 154, 154, 0.788) 1px;
     color: rgb(12, 10, 58);
     font-weight:bold;
-    @include phone2{
-        padding-left: 10px;
-    }
 }
 
 .caixa_ferramentas{
     display: flex;
-    height:50px;
-    width: 557px;
-    @include phone{
-        width: 220;
-        text-align: center;
-        display: inline-table;
-    }
-    @include phone1{
-        width: 260;
-        text-align: center;
-        display: inline-table;
-    }
-    @include phone2{
-        width: 0;
-        text-align: center;
-        display: inline-table;
-    }
+    max-height:40px;
+    max-width: 100%;
+
     .color{
-        display: inline-flex;
-        margin: 10px 0;
-        height: 35px;
-        width: 60px;
-        padding-left: 5px;
-        @include phone{
-            width: 25px;
-            position: relative;
-            top:8px;
-            margin: 0 5px;
-            padding-left: 2px;
-        }
-        @include phone1{
-            width: 30px;
-            position: relative;
-            top:8px;
-            margin: 0 5px;
-            padding-left: 3px;
-        }
-        @include phone2{
-            width: 40px;
-            position: relative;
-            top:7px;
-            margin: 0 5px;
-            padding-left: 7;
-        }
+        max-height: 100%;
+        width: 6%;
+        padding: 1px;
     }
     .input_username{
-        display: inline-flex;
-        margin: 10px 10px;
-        height: 30px;
-        width: 70px;
+        max-height: 100%;
+        width: 15%;
         @include phone{
-            width: 88px;
-            margin: 0 5px;
+            font-size: 12px;
         }
         @include phone1{
-            width: 120px;
-            margin: 0 5px;
+            font-size: 14px;
         }
         @include phone2{
-            width: 135px;
-            margin: 0 5px;
+            font-size: 14px;
         }
     }
     .input_message{
-        display: block;
-        margin: 10px 10px;
-        height: 30px;
-        width: 600px;
+        max-height: 100%;
+        width: 55%;
         @include phone{
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 15px;
-            width: 235px;
-            height: 55px;
+            font-size: 12px;
+            width: 50%;
         }
         @include phone1{
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 15px;
-            width: 275px;
-            height: 55px;
+            font-size: 14px;
+            width: 53%;
         }
         @include phone2{
-            margin-top: 15px;
-            width: 330px;
-            height: 55px;
+            font-size: 14px;
+            width: 53%;
         }
     }
     .enviar{
-        padding: 5px;
-        margin: 10px 5px;
-        font-size: 18px;
-        width: 120px;
-        height: 35px;
+        font-size: 14px;
+        width: 28% ;
+        max-width: 100%;
+        max-height: 100%;
         background: rgba(114, 114, 236, 0.801);
         color: white;
-        border-radius: 10px;
         border: 1px solid rgb(100, 100, 153);
         @include phone{
-            width: 90px;
-            margin: 0 5px;
+            font-size: 12px;
+            width: 20%;
         }
         @include phone1{
-            width: 90px;
-            margin: 0 5px;
+            font-size: 14px;
+            width: 20%;
         }
         @include phone2{
-            margin: 0 5px;
+            font-size: 14px;
+            width: 20%;
         }
     } 
 }
 .erro_form{
-    font-size: 14px; 
+    font-size: 12px; 
     display: none;
-    margin-left: auto;
-    margin-right: auto;
-    width: 99%;
-    height: 30px;
-    padding-top: 15px;
+    margin: 3px auto;
+    width: 100%;
+    height: 20px;
+    padding-top: 9px;
     border-radius: 5px;
     background:rgb(230, 201, 191);
     text-align: center;
+    vertical-align: middle;
     color: rgb(247, 40, 40);
-    @include phone1{
-
-        padding-top: 5px;
-        margin-top: 10px;
-        height: 25px;
-        width: 335px;
-    }
-    @include phone2{
-        padding-top: 5px;
-        margin-top: 10px;
-        height: 25px;
-        width: 335px;
-    }
 }
 footer{
-    padding-top: 20px;
+    padding-top: 10px;
     text-align: center;
     a{
         text-decoration: none;
-        color: cornflowerblue;
+        color: rgba(114, 114, 236, 0.801);
         &:visited{
-            color: cornflowerblue;
+            color: rgba(114, 114, 236, 0.801);
         }
     }
 

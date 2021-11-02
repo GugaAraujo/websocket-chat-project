@@ -1,7 +1,8 @@
 html {
-  background-image: linear-gradient(170deg, #383838, #4d4d4d, #363636, #2f3030);
+  background-image: linear-gradient(#383838, #4d4d4d, #363636, #2f3030, #383838);
   background-size: cover;
-  height: 610px;
+  background-repeat: repeat;
+  height: 900px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -10,29 +11,27 @@ html {
 }
 @media (max-width: 319.9px) {
   html {
-    position: fixed;
-    width: 100%;
     height: 900px;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   html {
-    position: fixed;
-    width: 100%;
     height: 900px;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   html {
-    position: fixed;
-    width: 530px;
     height: 900px;
   }
 }
 @media (min-width: 600px) and (max-width: 899.9px) {
   html {
-    width: 700px;
+    height: 900px;
   }
+}
+
+*:focus {
+  outline: none;
 }
 
 /* Works on Firefox */
@@ -56,41 +55,68 @@ html {
   border: 3px solid #d3d2d1;
 }
 
-.caixa_chat {
-  margin-top: 20px;
+.box {
+  width: 500px;
+  height: 458px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+.box h1 {
+  text-align: center;
+  margin: 3px auto;
+  font-size: 22px;
+  color: rgba(114, 114, 236, 0.801);
+  text-shadow: #d3d3ff 0.5px 0.5px 0px;
+}
+.box p {
+  font-size: 14px;
+  color: white;
+  margin: 3px auto;
+}
+@media (max-width: 319.9px) {
+  .box {
+    width: 250px;
+    height: 385px;
+  }
+}
+@media (min-width: 320px) and (max-width: 419.9px) {
+  .box {
+    width: 300px;
+    height: 360px;
+  }
+}
+@media (min-width: 420px) and (max-width: 599.9px) {
+  .box {
+    width: 400px;
+    height: 360px;
+  }
+}
+
+.caixa_chat {
+  margin: 0;
   padding: 20px;
-  background-image: linear-gradient(75deg, rgba(255, 255, 255, 0.947), rgba(247, 241, 241, 0.905), rgba(247, 241, 241, 0.805));
-  border-radius: 5px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.947), rgba(247, 241, 241, 0.905), rgba(247, 241, 241, 0.805));
   border: solid rgba(243, 243, 243, 0.788) 1px;
-  height: 400px;
-  width: 500px;
+  height: 300px;
+  max-width: 100%;
   overflow: scroll;
   overflow-x: hidden;
 }
 @media (max-width: 319.9px) {
   .caixa_chat {
-    margin-left: auto;
-    margin-right: auto;
     height: 200px;
-    width: 220px;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   .caixa_chat {
-    margin-left: auto;
-    margin-right: auto;
     height: 200px;
-    width: 260px;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_chat {
-    margin-left: auto;
-    margin-right: auto;
     height: 200px;
-    width: 300px;
   }
 }
 
@@ -146,203 +172,116 @@ html {
 
 input {
   font-family: "Work Sans", sans-serif;
-  padding-left: 20px;
+  padding-left: 5px;
   background: white;
-  border-radius: 10px;
-  border: solid rgba(243, 243, 243, 0.788) 1px;
+  border: solid rgba(157, 154, 154, 0.788) 1px;
   color: #0c0a3a;
   font-weight: bold;
-}
-@media (min-width: 420px) and (max-width: 599.9px) {
-  input {
-    padding-left: 10px;
-  }
 }
 
 .caixa_ferramentas {
   display: flex;
-  height: 50px;
-  width: 557px;
-}
-@media (max-width: 319.9px) {
-  .caixa_ferramentas {
-    width: 220;
-    text-align: center;
-    display: inline-table;
-  }
-}
-@media (min-width: 320px) and (max-width: 419.9px) {
-  .caixa_ferramentas {
-    width: 260;
-    text-align: center;
-    display: inline-table;
-  }
-}
-@media (min-width: 420px) and (max-width: 599.9px) {
-  .caixa_ferramentas {
-    width: 0;
-    text-align: center;
-    display: inline-table;
-  }
+  max-height: 40px;
+  max-width: 100%;
 }
 .caixa_ferramentas .color {
-  display: inline-flex;
-  margin: 10px 0;
-  height: 35px;
-  width: 60px;
-  padding-left: 5px;
-}
-@media (max-width: 319.9px) {
-  .caixa_ferramentas .color {
-    width: 25px;
-    position: relative;
-    top: 8px;
-    margin: 0 5px;
-    padding-left: 2px;
-  }
-}
-@media (min-width: 320px) and (max-width: 419.9px) {
-  .caixa_ferramentas .color {
-    width: 30px;
-    position: relative;
-    top: 8px;
-    margin: 0 5px;
-    padding-left: 3px;
-  }
-}
-@media (min-width: 420px) and (max-width: 599.9px) {
-  .caixa_ferramentas .color {
-    width: 40px;
-    position: relative;
-    top: 7px;
-    margin: 0 5px;
-    padding-left: 7;
-  }
+  max-height: 100%;
+  width: 6%;
+  padding: 1px;
 }
 .caixa_ferramentas .input_username {
-  display: inline-flex;
-  margin: 10px 10px;
-  height: 30px;
-  width: 70px;
+  max-height: 100%;
+  width: 15%;
 }
 @media (max-width: 319.9px) {
   .caixa_ferramentas .input_username {
-    width: 88px;
-    margin: 0 5px;
+    font-size: 12px;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   .caixa_ferramentas .input_username {
-    width: 120px;
-    margin: 0 5px;
+    font-size: 14px;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .input_username {
-    width: 135px;
-    margin: 0 5px;
+    font-size: 14px;
   }
 }
 .caixa_ferramentas .input_message {
-  display: block;
-  margin: 10px 10px;
-  height: 30px;
-  width: 600px;
+  max-height: 100%;
+  width: 55%;
 }
 @media (max-width: 319.9px) {
   .caixa_ferramentas .input_message {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
-    width: 235px;
-    height: 55px;
+    font-size: 12px;
+    width: 50%;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   .caixa_ferramentas .input_message {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
-    width: 275px;
-    height: 55px;
+    font-size: 14px;
+    width: 53%;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .input_message {
-    margin-top: 15px;
-    width: 330px;
-    height: 55px;
+    font-size: 14px;
+    width: 53%;
   }
 }
 .caixa_ferramentas .enviar {
-  padding: 5px;
-  margin: 10px 5px;
-  font-size: 18px;
-  width: 120px;
-  height: 35px;
+  font-size: 14px;
+  width: 28%;
+  max-width: 100%;
+  max-height: 100%;
   background: rgba(114, 114, 236, 0.801);
   color: white;
-  border-radius: 10px;
   border: 1px solid #646499;
 }
 @media (max-width: 319.9px) {
   .caixa_ferramentas .enviar {
-    width: 90px;
-    margin: 0 5px;
+    font-size: 12px;
+    width: 20%;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
   .caixa_ferramentas .enviar {
-    width: 90px;
-    margin: 0 5px;
+    font-size: 14px;
+    width: 20%;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
   .caixa_ferramentas .enviar {
-    margin: 0 5px;
+    font-size: 14px;
+    width: 20%;
   }
 }
 
 .erro_form {
-  font-size: 14px;
+  font-size: 12px;
   display: none;
-  margin-left: auto;
-  margin-right: auto;
-  width: 99%;
-  height: 30px;
-  padding-top: 15px;
+  margin: 3px auto;
+  width: 100%;
+  height: 20px;
+  padding-top: 9px;
   border-radius: 5px;
   background: #e6c9bf;
   text-align: center;
+  vertical-align: middle;
   color: #f72828;
-}
-@media (min-width: 320px) and (max-width: 419.9px) {
-  .erro_form {
-    padding-top: 5px;
-    margin-top: 10px;
-    height: 25px;
-    width: 335px;
-  }
-}
-@media (min-width: 420px) and (max-width: 599.9px) {
-  .erro_form {
-    padding-top: 5px;
-    margin-top: 10px;
-    height: 25px;
-    width: 335px;
-  }
 }
 
 footer {
-  padding-top: 20px;
+  padding-top: 10px;
   text-align: center;
 }
 footer a {
   text-decoration: none;
-  color: cornflowerblue;
+  color: rgba(114, 114, 236, 0.801);
 }
 footer a:visited {
-  color: cornflowerblue;
+  color: rgba(114, 114, 236, 0.801);
 }
 
 /*# sourceMappingURL=style.css.map */

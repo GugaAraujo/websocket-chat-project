@@ -21,28 +21,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="glass">
-        <form id="chat"></form>
+    <div class="box">
+        <H1>Websocket Chat Project</H1>
+        <p>Total online: <span class="placar total_online" id="total_online"></span> | Record online: <span class="placar record_online" id="record_online"></span></p>
+        <form id="chat">
             <div class="caixa_chat" id="caixa_chat">  
             </div>
             <div class="caixa_ferramentas">
-                <input type="text" class="input_message" id="input_message" name="input_message" placeholder="Digite sua mensagem">  
                 <input type="color" name="color" id="color" class="color">
                 <input type="text" class="input_username" id="input_username" name="input_username" placeholder="Nome">
+                <input type="text" class="input_message" id="input_message" name="input_message" placeholder="Mensagem">  
                <button type="submit" id="enviar" class="enviar">Enviar</button>
             </div>
             <div class="erro_form" id="erro_form">
                 <span>* Preencha os campos Mensagem e Nome</span>
             </div>      
         </form>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js" integrity="sha512-zN6KYOtONNTOGXz0RkWX2EpavN9VdIs+2w+To+fhciFv83YA9maUpi2lzZWrOfKXdFIZZomWufBznkyHi3a8oQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="script.js"></script>
     </div>
+
+
+
     <footer>
         <a href="https://www.guga-araujo.dev.br" target="_blank">www.guga-araujo.dev.br</a>
     </footer>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js" integrity="sha512-zN6KYOtONNTOGXz0RkWX2EpavN9VdIs+2w+To+fhciFv83YA9maUpi2lzZWrOfKXdFIZZomWufBznkyHi3a8oQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="script.js"></script>
+  
 </body>
 </html>

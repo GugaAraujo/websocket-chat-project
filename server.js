@@ -35,12 +35,21 @@ io.on("connection",socket =>{
     total_online ++
     if(total_online>record_online){record_online=total_online}
 
+    //Criando Objeto Placar, incluindo as contagens
+    let placar = {
+        total: total_online,
+        record: record_online
+    }
+
+    //emitindo a todos a contagem, a cada entrada de usuário
+    socket.emit("placar",placar)
+    socket.broadcast.emit("placar",placar)
+    console.log(placar)
+
 
     //aviso de entrada de novo usuario
-    let entrou_usuario = `${socket.id} entrou na sala. Total online: ${total_online}. Recorde online: ${record_online}`
-    console.log(`
-${entrou_usuario}
-         `)
+    let entrou_usuario = `${socket.id} entrou na sala.`
+
     socket.broadcast.emit("aviso",entrou_usuario)
 
 
@@ -61,15 +70,23 @@ ${entrou_usuario}
     socket.on('disconnect', function() {
         total_online = total_online -1
 
+        //Criando Objeto Placar, incluindo as contagens atualizadas
+        let placar = {
+            total: total_online,
+            record: record_online
+        }
+
+        //emitindo a todos a contagem, a cada saida de usuário
+        socket.emit("placar",placar)
+        socket.broadcast.emit("placar",placar)
+        console.log(placar)
+
+
 
         // ... Então avisamos a todos sobre a saída do usuário
-        let saiu_usuario = `${socket.id} saiu da sala. Total online: ${total_online}. Recorde online: ${record_online}`
+        let saiu_usuario = `${socket.id} saiu da sala.`
         socket.broadcast.emit("aviso",saiu_usuario)
 
-        //... exibimos no console.
-        console.log(`
-${saiu_usuario}
-         `)
 
     });
 })
@@ -78,3 +95,7 @@ server.listen(porta,()=>console.log(`Conectado!`))
 
 //Removendo do topo do histórico uma frase a cada intervalo de tempo pré determinado
 setInterval(() => messages.shift(), intervalo_remover_frases);
+
+
+
+

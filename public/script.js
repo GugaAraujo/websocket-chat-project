@@ -1,5 +1,8 @@
 const socket = io(location.origin.replace(/^http/, 'ws'))
 
+let total_online = document.getElementById("total_online")
+let record_online = document.getElementById("record_online")
+
 const btn_enviar = document.getElementById("enviar")
 let msgm_erro_form = document.getElementById("erro_form") 
 
@@ -34,6 +37,11 @@ window.document.addEventListener('keyup', function(event){
 
 
 //Recebimento de mensagens do servidor
+socket.on("placar", (placar)=>{
+    total_online.textContent = placar.total
+    record_online.textContent = placar.record
+})
+
 socket.on("entrada", function(saudacao){
     $('.caixa_chat').append(`<div class="saudacao"><span>${saudacao}</span></div>`)
 })
