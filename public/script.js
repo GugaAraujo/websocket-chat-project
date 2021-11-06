@@ -10,7 +10,7 @@ let btn_username = document.getElementById("btn_username")
 //seletor de cor
 let botao_color = document.getElementById("color")
 botao_color.value = "#000000"
-let cor_escolhida = ""
+let cor_escolhida = "#000000"
 
 let nome = document.getElementById("input_username")
 nome.value=""
@@ -136,8 +136,12 @@ function entrar_no_chat(){
 
 //Acessando ao websocket
 const socket = io(location.origin.replace(/^http/, 'ws'))
-    
-        socket.emit('entrou_usuario',nome.value)
+        let usuario = 
+        {
+            nome: nome.value,
+            color: cor_escolhida,
+        }
+        socket.emit('entrou_usuario',usuario)
 
 
         //Enviando mensagens através de evento de ENTER e Click
@@ -178,10 +182,13 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
             render_mensagem(message,message.color)
         })
 
-        socket.on('aviso_novo_usuario', (novo_usuario) =>{
-            $('.caixa_chat').append(`<div class="aviso"><span><b>${novo_usuario}</b> entrou na sala</span></div>`)
+        socket.on('aviso_novo_usuario', (usuario_entrante) =>{
+            $('.caixa_chat').append(`<div class="aviso"><span style="color:#a2a2a2;font-size:12px">${usuario_entrante.hora} - </span><span style="color:${usuario_entrante.color}"><b>${usuario_entrante.nome}</b></span><span> entrou na sala</span></div>`)
         })
 
+        socket.on('usuario_sainte', (usuario_sainte) =>{
+            $('.caixa_chat').append(`<div class="aviso"><span style="color:#a2a2a2;font-size:12px">${usuario_sainte.hora} - </span><span style="color:${usuario_sainte.color}"><b>${usuario_sainte.nome}</b></span><span> saiu da sala</span></div>`)
+        })
 
 
 

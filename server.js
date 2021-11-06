@@ -18,6 +18,8 @@ app.use("/",(req, res)=>{
     res.render("index.html")
 })
 
+let dataAtual = new Date();
+let hora = dataAtual.toLocaleTimeString()
 
 const intervalo_remover_frases = 120000
 
@@ -52,8 +54,19 @@ io.on("connection",socket =>{
 
 
     socket.on('entrou_usuario', novo_usuario =>{
-        socket.broadcast.emit('aviso_novo_usuario',novo_usuario)
-        socket.nome=novo_usuario
+        socket.nome=novo_usuario.nome
+        socket.color=novo_usuario.color
+
+        usuario_entrante =
+        {
+            hora:hora,
+            nome:novo_usuario.nome,
+            color:novo_usuario.color
+        }
+
+        socket.broadcast.emit('aviso_novo_usuario',usuario_entrante)
+
+        console.log(novo_usuario)
     })
 
     //Enviando histórico, saudação e aviso sobre o histórico ao usuário recém chegado
@@ -87,8 +100,12 @@ io.on("connection",socket =>{
 
 
         // ... Então avisamos a todos sobre a saída do usuário
-        let saiu_usuario = `${socket.nome} saiu da sala.`
-        socket.broadcast.emit("aviso",saiu_usuario)
+        let usuario_sainte = {
+            hora:hora,
+            nome:socket.nome,
+             color:socket.color
+            }
+        socket.broadcast.emit("usuario_sainte",usuario_sainte)
         console.log(socket)
 
 
