@@ -30,7 +30,6 @@ let modal = document.getElementById("modal");
 // Get the button that opens the modal
 let btn = document.getElementById("btn_username");
 btn.addEventListener("click",(event)=>{
-    event.preventDefault()
     modal.style.display = "block";
 });
 
@@ -39,7 +38,6 @@ let span = document.getElementById("close")
 span.addEventListener("click",(event)=>{
     if(campo_nome.value.length>0){
     modal.style.display = "none";
-    insere_nome(campo_nome.value)
 }
 });
 
@@ -54,8 +52,7 @@ span.addEventListener("click",(event)=>{
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal&&campo_nome.value.length>0) {
-    modal.style.display = "none";
-    insere_nome(campo_nome.value)   
+    modal.style.display = "none";   
   }
 } 
 
@@ -63,7 +60,6 @@ window.document.addEventListener('keyup', function(event){
     if (event.key == 13|| event.key === "Enter") {
         if(event.target == campo_nome&&campo_nome.value.length>0){
             modal.style.display = "none";
-            insere_nome(campo_nome.value)
         }
       }
 });
