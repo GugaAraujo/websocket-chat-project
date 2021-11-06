@@ -50,8 +50,11 @@ io.on("connection",socket =>{
     //aviso de entrada de novo usuario
     let entrou_usuario = `${socket.id} entrou na sala.`
 
-    socket.broadcast.emit("aviso",entrou_usuario)
 
+    socket.on('entrou_usuario', novo_usuario =>{
+        socket.broadcast.emit('aviso_novo_usuario',novo_usuario)
+        socket.nome=novo_usuario
+    })
 
     //Enviando histórico, saudação e aviso sobre o histórico ao usuário recém chegado
     socket.emit('mensagensAnteriores',messages)
@@ -84,8 +87,9 @@ io.on("connection",socket =>{
 
 
         // ... Então avisamos a todos sobre a saída do usuário
-        let saiu_usuario = `${socket.id} saiu da sala.`
+        let saiu_usuario = `${socket.nome} saiu da sala.`
         socket.broadcast.emit("aviso",saiu_usuario)
+        console.log(socket)
 
 
     });
