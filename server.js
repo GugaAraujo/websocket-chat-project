@@ -18,8 +18,7 @@ app.use("/",(req, res)=>{
     res.render("index.html")
 })
 
-let dataAtual = new Date();
-let hora = dataAtual.toLocaleTimeString()
+
 
 const intervalo_remover_frases = 120000
 
@@ -54,6 +53,10 @@ io.on("connection",socket =>{
 
 
     socket.on('entrou_usuario', novo_usuario =>{
+        let dataAtual = new Date();
+        let hora = dataAtual.toLocaleTimeString()
+
+
         socket.nome=novo_usuario.nome
         socket.color=novo_usuario.color
 
@@ -85,6 +88,9 @@ io.on("connection",socket =>{
     //No momento de desconexão do usuário, decrescemos nossa contagem de usuários online...
     socket.on('disconnect', function() {
         total_online = total_online -1
+
+        let dataAtual = new Date();
+        let hora = dataAtual.toLocaleTimeString()
 
         //Criando Objeto Placar, incluindo as contagens atualizadas
         let placar = {
