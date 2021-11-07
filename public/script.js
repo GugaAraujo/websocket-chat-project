@@ -1,5 +1,6 @@
 
-
+    let dataAtual = new Date();
+    let hora = dataAtual.toLocaleTimeString()   
 
 
 let conexao = false
@@ -129,7 +130,7 @@ function entrar_no_chat(){
     //adicionando Foco ao input de mensagens.
     message.focus()
 
-    if(conexao===false){
+    if(!conexao){
             conexao=true
 
             
@@ -174,12 +175,12 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
 
         socket.on("mensagensAnteriores", function(messages){
             for (message of messages){
-                render_mensagem(message,message.color)
+                render_mensagem(message,message.color,message.hora)
             }
         })
 
         socket.on("receivedMessage", function(message){
-            render_mensagem(message,message.color)
+            render_mensagem(message,message.color,message.hora)
         })
 
         socket.on('aviso_novo_usuario', (usuario_entrante) =>{
@@ -195,10 +196,8 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
         
 // O primeiro parametro se refere ao MessageObject
 //O segundo será: Ou cor escolhida, no caso de envio de mensagem, ou a cor de quem enviou a mensagem
-function render_mensagem(message,cor_do_nick){
-    let dataAtual = new Date();
-let hora = dataAtual.toLocaleTimeString()
-    $('.caixa_chat').append(`<div class="message"><span style="color:#a2a2a2;font-size:12px">${hora} - </span><strong><span style="color:${cor_do_nick}">${message.nome}</span></strong>: <span style="padding-left:10px">${message.message}</span></div>`)
+function render_mensagem(message,cor_do_nick,hora_msgm){
+    $('.caixa_chat').append(`<div class="message"><span style="color:#a2a2a2;font-size:12px">${hora_msgm} - </span><strong><span style="color:${cor_do_nick}">${message.nome}</span></strong>: <span style="padding-left:10px">${message.message}</span></div>`)
 let myDiv = document.getElementById("caixa_chat");
     myDiv.scrollTop = myDiv.scrollHeight;
 }
@@ -217,7 +216,7 @@ function enviar_mensagem(event){
  
         if(message.value.length>0&&nome.value.length>0){
             msgm_erro_form.style.display = "none"
-            render_mensagem(messageObject,cor_escolhida)
+            render_mensagem(messageObject,cor_escolhida,hora)
 
             socket.emit('sendMessage', messageObject)
             message.value =""
@@ -233,4 +232,5 @@ function enviar_mensagem(event){
 
 
     }
+    
 }
