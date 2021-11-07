@@ -125,7 +125,7 @@ message.value = ""
 
 function entrar_no_chat(){
 
-
+    btn_username.style.color = cor_escolhida
     //adicionando Foco ao input de mensagens.
     message.focus()
 
