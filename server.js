@@ -54,7 +54,7 @@ io.on("connection",socket =>{
 
     socket.on('entrou_usuario', novo_usuario =>{
         let dataAtual = new Date();
-        let hora = dataAtual.toLocaleTimeString('pt-BR', {timeZone: 'UTC'})
+        let hora = dataAtual.toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo'})
 
 
         socket.nome=novo_usuario.nome
@@ -81,7 +81,7 @@ io.on("connection",socket =>{
     //Ao receber mensagem, enviamos ao histórico temporário, exibimos no serivor e reenviamos a todos
     socket.on('sendMessage', data =>{
         let dataAtual = new Date();
-        let hora = dataAtual.toLocaleTimeString('pt-BR', {timeZone: 'UTC'})
+        let hora = dataAtual.toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo'})
 
         data = {
             nome: data.nome,
