@@ -100,7 +100,7 @@ io.on("connection",socket =>{
         total_online = total_online -1
 
         let dataAtual = new Date();
-        let hora = dataAtual.toLocaleTimeString('pt-BR', {timeZone: 'UTC'})
+        let hora = dataAtual.toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo'})
 
         //Criando Objeto Placar, incluindo as contagens atualizadas
         let placar = {
