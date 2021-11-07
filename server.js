@@ -80,9 +80,19 @@ io.on("connection",socket =>{
 
     //Ao receber mensagem, enviamos ao histórico temporário, exibimos no serivor e reenviamos a todos
     socket.on('sendMessage', data =>{
+        let dataAtual = new Date();
+        let hora = dataAtual.toLocaleTimeString()
+
+        data = {
+            nome: data.nome,
+            message: data.message,
+            color: data.color,
+            hora: hora
+        }
         messages.push(data)
         console.log(messages)
         socket.broadcast.emit('receivedMessage',data)
+        console.log("enviado, data:",data)
     })
 
     //No momento de desconexão do usuário, decrescemos nossa contagem de usuários online...
