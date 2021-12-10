@@ -17,7 +17,7 @@
   margin: 15% auto;
   padding: 20px;
   width: 30%;
-  border: 3px solid rgba(43, 43, 117, 0.801);
+  border: 3px solid #0ea5bc;
   border-radius: 10px;
   background-image: linear-gradient(rgba(255, 255, 255, 0.947), rgba(247, 241, 241, 0.905), rgba(247, 241, 241, 0.805));
 }
@@ -42,8 +42,8 @@
   }
 }
 .modal-content h4 {
-  color: rgba(43, 43, 117, 0.801);
-  text-shadow: #d3d3ff 0.5px 0.5px 0px;
+  color: #0ea5bc;
+  text-shadow: #3998d3 0.5px 0.5px 0px;
 }
 
 .close {
@@ -53,9 +53,9 @@
   text-align: center;
   font-family: "Work Sans", sans-serif;
   padding: 5px;
-  background: rgba(114, 114, 236, 0.801);
+  background: #0ea5bc;
   color: white;
-  border: 1px solid #646499;
+  border: 1px solid #0ea5bc;
 }
 
 .close:hover,
@@ -78,7 +78,7 @@
   width: 190px;
   background: transparent;
   border: none;
-  border-bottom: 1px rgba(43, 43, 117, 0.801) solid;
+  border-bottom: 1px #034168 solid;
 }
 @media (max-width: 319.9px) {
   .input_username {
@@ -100,7 +100,7 @@
 }
 
 html {
-  background-image: linear-gradient(#383838, #4d4d4d, #363636, #2f3030, #383838);
+  background-image: linear-gradient(#e6e9e4, #bdd0d0, #9abcbf);
   background-size: cover;
   background-repeat: repeat;
   height: 900px;
@@ -136,14 +136,14 @@ h1 {
   text-align: center;
   margin: 3px auto;
   font-size: 22px;
-  color: rgba(114, 114, 236, 0.801);
-  text-shadow: #d3d3ff 0.5px 0.5px 0px;
+  color: #0ea5bc;
+  text-shadow: #034168 0.5px 0.5px 0px;
 }
 
 p {
   text-align: center;
   font-size: 12px;
-  color: white;
+  color: #034168;
   padding: 2px auto;
 }
 
@@ -231,7 +231,7 @@ p {
 
 .saudacao {
   margin-bottom: 10px;
-  color: #a2a2a2;
+  color: #034168;
   font-size: 14px;
 }
 @media (max-width: 319.9px) {
@@ -343,9 +343,9 @@ input {
   width: 20%;
   max-width: 100%;
   max-height: 100%;
-  background: rgba(114, 114, 236, 0.801);
+  background: #0ea5bc;
   color: white;
-  border: 1px solid #646499;
+  border: 1px solid #0ea5bc;
 }
 @media (max-width: 319.9px) {
   .caixa_ferramentas .enviar {
@@ -374,7 +374,7 @@ input {
   height: 20px;
   padding-top: 9px;
   border-radius: 5px;
-  background: #e6c9bf;
+  background: rgba(240, 216, 208, 0.849);
   text-align: center;
   vertical-align: middle;
   color: #f72828;
@@ -386,10 +386,11 @@ footer {
 }
 footer a {
   text-decoration: none;
-  color: rgba(114, 114, 236, 0.801);
+  color: #0ea5bc;
+  text-shadow: #1a74ac 0.5px 0.5px 0px;
 }
 footer a:visited {
-  color: rgba(114, 114, 236, 0.801);
+  color: #0ea5bc;
 }
 
 /*# sourceMappingURL=style.css.map */
