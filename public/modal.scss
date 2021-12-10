@@ -21,7 +21,7 @@
     margin: 15% auto; 
     padding: 20px;
     width: 30%;
-    border: 3px solid rgba(43, 43, 117, 0.801);
+    border: 3px solid rgb(14, 165, 188);
     border-radius: 10px;
     background-image: linear-gradient(rgba(255, 255, 255, 0.947),rgba(247, 241, 241, 0.905),rgba(247, 241, 241, 0.805));
     @include phone{
@@ -37,8 +37,8 @@
         width: 40%;
     }
     h4{
-        color: rgba(43, 43, 117, 0.801);
-        text-shadow: rgb(211, 211, 255) 0.5px  0.5px 0px;
+        color: rgb(14, 165, 188);
+        text-shadow: #3998d3 0.5px  0.5px 0px;
     }
   }
   
@@ -50,9 +50,9 @@
     text-align: center;
     font-family: 'Work Sans', sans-serif;
     padding: 5px;
-    background: rgba(114, 114, 236, 0.801);
+    background: rgb(14, 165, 188);
     color: white;
-    border: 1px solid rgb(100, 100, 153);
+    border: 1px solid rgb(14, 165, 188);
   }
   
   .close:hover,
@@ -74,7 +74,7 @@
     width: 190px;
     background:transparent;
     border: none;
-    border-bottom: 1px rgba(43, 43, 117, 0.801) solid;
+    border-bottom: 1px #034168 solid;
     @include phone{
         font-size: 12px;
         width: 140px;

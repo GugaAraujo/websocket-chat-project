@@ -4,7 +4,7 @@
 
 
 html{
-    background-image: linear-gradient(rgb(56, 56, 56),rgb(77, 77, 77), rgb(54, 54, 54),rgb(47, 48, 48),rgb(56, 56, 56));
+    background-image: linear-gradient(rgb(230, 233, 228), rgb(189, 208, 208),rgb(154, 188, 191));
     background-size: cover;
     background-repeat: repeat;
     height: 900px;
@@ -34,13 +34,13 @@ h1{
     text-align: center;
     margin: 3px auto;
     font-size: 22px;
-    color: rgba(114, 114, 236, 0.801);
-    text-shadow: rgb(211, 211, 255) 0.5px  0.5px 0px;
+    color: rgb(14, 165, 188);
+    text-shadow: #034168 0.5px  0.5px 0px;
 }
 p{
     text-align: center;
     font-size: 12px;
-    color: white;
+    color: #034168;
     padding: 2px auto;
 }
 
@@ -117,7 +117,7 @@ margin-bottom: 8px;
 }
 .saudacao{
     margin-bottom: 10px;
-    color:#a2a2a2;
+    color:#034168 ;
     font-size:14px;
     @include phone{
         font-size: 18px;
@@ -200,9 +200,9 @@ input{
         width: 20% ;
         max-width: 100%;
         max-height: 100%;
-        background: rgba(114, 114, 236, 0.801);
+        background: rgb(14, 165, 188);
         color: white;
-        border: 1px solid rgb(100, 100, 153);
+        border: 1px solid rgb(14, 165, 188);
         @include phone{
             font-size: 12px;
             width: 20%;
@@ -225,7 +225,7 @@ input{
     height: 20px;
     padding-top: 9px;
     border-radius: 5px;
-    background:rgb(230, 201, 191);
+    background:rgba(240, 216, 208, 0.849);
     text-align: center;
     vertical-align: middle;
     color: rgb(247, 40, 40);
@@ -235,9 +235,10 @@ footer{
     text-align: center;
     a{
         text-decoration: none;
-        color: rgba(114, 114, 236, 0.801);
+        color: rgb(14, 165, 188);
+        text-shadow: #1a74ac 0.5px  0.5px 0px;
         &:visited{
-            color: rgba(114, 114, 236, 0.801);
+            color: rgb(14, 165, 188);
         }
     }
 
