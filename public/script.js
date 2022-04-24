@@ -5,7 +5,7 @@ function getTime(){
 
 let conexao = false
 //formulário do Modal
-let campo_nome = document.getElementById("input_username")
+let campo_name = document.getElementById("input_username")
 let btn_username = document.getElementById("btn_username")
 
 //seletor de cor
@@ -13,14 +13,14 @@ let botao_color = document.getElementById("color")
 botao_color.value = "#000000"
 let cor_escolhida = "#000000"
 
-let nome = document.getElementById("input_username")
-nome.value=""
+let name = document.getElementById("input_username")
+name.value=""
 
 
 //Atribuindo nova cor de nick, que será enviada no Objeto MessageObject
 botao_color.addEventListener("change",()=>{
     cor_escolhida = botao_color.value
-    nome.style.color = cor_escolhida;
+    name.style.color = cor_escolhida;
 })
 
 
@@ -40,7 +40,7 @@ btn.addEventListener("click",(event)=>{
 // Get the <span> element that closes the modal
 let span = document.getElementById("close")
 span.addEventListener("click",(event)=>{
-    if(campo_nome.value.length>0){
+    if(campo_name.value.length>0){
     modal.style.display = "none";
     entrar_no_chat()
 }
@@ -56,7 +56,7 @@ span.addEventListener("click",(event)=>{
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modal&&campo_nome.value.length>0) {
+  if (event.target == modal&&campo_name.value.length>0) {
     modal.style.display = "none";
     entrar_no_chat()
   }
@@ -64,7 +64,7 @@ window.onclick = function(event) {
 
 window.document.addEventListener('keyup', function(event){
     if (event.key == 13|| event.key === "Enter") {
-        if(event.target == campo_nome&&campo_nome.value.length>0){
+        if(event.target == campo_name&&campo_name.value.length>0){
             modal.style.display = "none";
             entrar_no_chat()
         }
@@ -139,10 +139,10 @@ function entrar_no_chat(){
 const socket = io(location.origin.replace(/^http/, 'ws'))
         let usuario = 
         {
-            nome: nome.value,
+            name: name.value,
             color: cor_escolhida,
         }
-        socket.emit('entrou_usuario',usuario)
+        socket.emit('enteredUser',usuario)
 
 
         //Enviando mensagens através de evento de ENTER e Click
@@ -160,20 +160,20 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
 
 
         //Recebimento de mensagens do servidor
-        socket.on("placar", (placar)=>{
-            total_online.textContent = placar.total
-            record_online.textContent = placar.record
+        socket.on("scoreboard", (scoreboard)=>{
+            total_online.textContent = scoreboard.total
+            record_online.textContent = scoreboard.record
         })
 
-        socket.on("entrada", function(saudacao){
-            $('.caixa_chat').append(`<div class="saudacao"><span>${saudacao}</span></div>`)
+        socket.on("entering", function(welcomeMessage){
+            $('.caixa_chat').append(`<div class="welcomeMessage"><span>${welcomeMessage}</span></div>`)
         })
 
-        socket.on("aviso", function(aviso){
-            $('.caixa_chat').append(`<div class="aviso"><span>${aviso}</span></div>`)
+        socket.on("historyRemovalAlert", function(historyRemovalAlert){
+            $('.caixa_chat').append(`<div class="historyRemovalAlert"><span>${historyRemovalAlert}</span></div>`)
         })
 
-        socket.on("mensagensAnteriores", function(messages){
+        socket.on("PreviousMessages", function(messages){
             for (message of messages){
                 render_mensagem(message,message.color,message.hora)
             }
@@ -183,12 +183,12 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
             render_mensagem(message,message.color,message.hora)
         })
 
-        socket.on('aviso_novo_usuario', (usuario_entrante) =>{
-            $('.caixa_chat').append(`<div class="aviso"><span style="color:#a2a2a2;font-size:12px">${usuario_entrante.hora} - </span><span style="color:${usuario_entrante.color}"><b>${usuario_entrante.nome}</b></span><span> entrou na sala</span></div>`)
+        socket.on('historyRemovalAlert_newUser', (enteredUser) =>{
+            $('.caixa_chat').append(`<div class="historyRemovalAlert"><span style="color:#a2a2a2;font-size:12px">${enteredUser.hora} - </span><span style="color:${enteredUser.color}"><b>${enteredUser.name}</b></span><span> entrou na sala</span></div>`)
         })
 
-        socket.on('usuario_sainte', (usuario_sainte) =>{
-            $('.caixa_chat').append(`<div class="aviso"><span style="color:#a2a2a2;font-size:12px">${usuario_sainte.hora} - </span><span style="color:${usuario_sainte.color}"><b>${usuario_sainte.nome}</b></span><span> saiu da sala</span></div>`)
+        socket.on('outgoingUser', (outgoingUser) =>{
+            $('.caixa_chat').append(`<div class="historyRemovalAlert"><span style="color:#a2a2a2;font-size:12px">${outgoingUser.hora} - </span><span style="color:${outgoingUser.color}"><b>${outgoingUser.name}</b></span><span> saiu da sala</span></div>`)
         })
 
 
@@ -197,7 +197,7 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
 // O primeiro parametro se refere ao MessageObject
 //O segundo será: Ou cor escolhida, no caso de envio de mensagem, ou a cor de quem enviou a mensagem
 function render_mensagem(message,cor_do_nick,hora_msgm){
-    $('.caixa_chat').append(`<div class="message"><span style="color:#a2a2a2;font-size:12px">${hora_msgm} - </span><strong><span style="color:${cor_do_nick}">${message.nome}</span></strong>: <span style="padding-left:10px">${message.message}</span></div>`)
+    $('.caixa_chat').append(`<div class="message"><span style="color:#a2a2a2;font-size:12px">${hora_msgm} - </span><strong><span style="color:${cor_do_nick}">${message.name}</span></strong>: <span style="padding-left:10px">${message.message}</span></div>`)
 let myDiv = document.getElementById("caixa_chat");
     myDiv.scrollTop = myDiv.scrollHeight;
 }
@@ -205,16 +205,16 @@ let myDiv = document.getElementById("caixa_chat");
 //Verificando os imputs estão preenchidos antes de renderizar na tela e enviar o MessageObject ao servidor.
 function enviar_mensagem(event){
     event.preventDefault()
-    let nome = document.getElementById("input_username")
+    let name = document.getElementById("input_username")
     let message = document.getElementById("input_message")  
         let messageObject = {
-            nome: nome.value,
+            name: name.value,
             message: message.value,
             color: cor_escolhida,
         }
 
  
-        if(message.value.length>0&&nome.value.length>0){
+        if(message.value.length>0&&name.value.length>0){
             msgm_erro_form.style.display = "none"
             render_mensagem(messageObject,cor_escolhida,getTime())
 

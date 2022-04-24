@@ -1,112 +1,126 @@
-const { Socket } = require("engine.io");
 
+const Record = require("../model/record.model")
+
+// Histórico de mensagens
 let messages = [];
 
-//Criando Objeto Placar, incluindo as contagens
-let placar = {
+//Criando Objeto scoreboard, incluindo as contagens
+let scoreboard = {
 	total: 0,
 	record: 0,
 }
 
-const intervalo_remover_frases = 120000
+const phraseRemovalRange = 120000
+const welcomeMessage = `Seja bem vindo! &#128516`
+const historyRemovalAlert = `A cada ${phraseRemovalRange/60000} minutos, uma frase é removida no histórico do chat. Nada ficará gravado por muito tempo.`
 
-const saudacao = `Seja bem vindo! &#128516`
-const aviso = `A cada ${intervalo_remover_frases/60000} minutos, uma frase é removida no histórico do chat. Nada ficará gravado por muito tempo.`
+async function newRecord(newRecord){
+	await Record.findOneAndUpdate({"record":newRecord})
+}
 
 function getTime(){
 	return new Date().toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo'})
 }
 
+function checkTotalUsers(socket){
+    //contando total de usuários ativos e conferindo se ultrapasssa o record
+    scoreboard.total++;
+
+    Record.find()
+    .then(result =>{
+        result.length === 0
+        ?	Record.create({"record":1})
+        : scoreboard.record = result[0].record
+    })
+    .then(() => {
+        scoreboard.total > scoreboard.record ? newRecord(scoreboard.total) : ''
+    })
+    .then(()=> sendsTotalUsers(socket))
+    .catch(console.log)
+
+}
+
+function sendsTotalUsers(socket){
+    //emitindo a todos a contagem, a cada entering de usuário
+    socket.emit("scoreboard",scoreboard)
+    socket.broadcast.emit("scoreboard",scoreboard)	
+}
+
+function newUser(socket){
+    socket.on('enteredUser', newUser =>{
+
+        socket.name=newUser.name
+        socket.color=newUser.color
+
+        enteredUser =
+        {
+            hora:getTime(),
+            name:newUser.name,
+            color:newUser.color
+        }
+
+        socket.broadcast.emit('historyRemovalAlert_newUser',enteredUser)
+    })
+
+}
+
+function sendMessageHistory(socket){
+    //Enviando histórico, saudação e historyRemovalAlert sobre o histórico ao usuário recém chegado
+    socket.emit('PreviousMessages',messages)
+    socket.emit('entering',welcomeMessage)
+    setTimeout(() => socket.emit('historyRemovalAlert',historyRemovalAlert),2000)	
+}
+
+function forwardReceivedMessage(socket){
+    //Ao receber mensagem, enviamos ao histórico temporário, exibimos no serivor e reenviamos a todos
+    socket.on('sendMessage', newMessage =>{
+
+        newMessage = {
+            name: newMessage.name,
+            message: newMessage.message,
+            color: newMessage.color,
+            hora: getTime()
+        }
+        messages.push(newMessage)
+        socket.broadcast.emit('receivedMessage',newMessage)
+    })
+}
+
+function userExit(socket){	
+//No momento de desconexão do usuário, decrescemos nossa contagem de usuários online...
+socket.on('disconnect', function() {
+    scoreboard.total--
+
+    //emitindo a todos a contagem, a cada saida de usuário
+    socket.emit("scoreboard",scoreboard)
+    socket.broadcast.emit("scoreboard",scoreboard)
+
+    // ... Então avisamos a todos sobre a saída do usuário
+    let outgoingUser = {
+        hora:getTime(), 
+        name:socket.name,
+         color:socket.color
+        }
+    socket.broadcast.emit("outgoingUser",outgoingUser)
+
+});
+}
+
+function cleanHistoryPeriodically(){
+    //Removendo do topo do histórico uma frase a cada intervalo de tempo pré determinado
+    setInterval(() => messages.shift(), phraseRemovalRange);
+}
+
 module.exports = {
 
+    socketInit(socket){
 
-	incrementsTotalUsers(){
-		return placar.total++;
-	},
+        checkTotalUsers(socket)
+        newUser(socket) 
+        sendMessageHistory(socket)
+        forwardReceivedMessage(socket)
+        userExit(socket)
+        cleanHistoryPeriodically()
 
-	checkTotalUsers() {
-		this.incrementsTotalUsers()
-		//contando total de usuários ativos e conferindo se ultrapasssa o record
-		if (placar.total > placar.record) {
-			return placar.record = placar.total;
-		}
-	},
-
-	sendsTotalUsers(socket){
-		//emitindo a todos a contagem, a cada entrada de usuário
-		socket.emit("placar",placar)
-		socket.broadcast.emit("placar",placar)
-		console.log(placar)		
-	},
-
-	newUser(socket){
-		socket.on('entrou_usuario', novo_usuario =>{
-
-			socket.nome=novo_usuario.nome
-			socket.color=novo_usuario.color
-	
-			usuario_entrante =
-			{
-				hora:getTime(), //correto
-				nome:novo_usuario.nome,
-				color:novo_usuario.color
-			}
-	
-			socket.broadcast.emit('aviso_novo_usuario',usuario_entrante)
-	
-			console.log(novo_usuario)
-		})
-	
-	},
-
-	sendMessageHistory(socket){
-		//Enviando histórico, saudação e aviso sobre o histórico ao usuário recém chegado
-		socket.emit('mensagensAnteriores',messages)
-		socket.emit('entrada',saudacao)
-		setTimeout(() => socket.emit('aviso',aviso),2000)	
-	},
-
-	forwardReceivedMessage(socket){
-		//Ao receber mensagem, enviamos ao histórico temporário, exibimos no serivor e reenviamos a todos
-		socket.on('sendMessage', data =>{
-	
-			data = {
-				nome: data.nome,
-				message: data.message,
-				color: data.color,
-				hora: getTime() // exibe o tempo ao recebidor
-			}
-			messages.push(data)
-			console.log(messages)
-			socket.broadcast.emit('receivedMessage',data)
-			console.log("enviado, data:",data)
-		})
-	},
-
-	userExit(socket){	
-    //No momento de desconexão do usuário, decrescemos nossa contagem de usuários online...
-    socket.on('disconnect', function() {
-        placar.total = placar.total -1
-
-        //emitindo a todos a contagem, a cada saida de usuário
-        socket.emit("placar",placar)
-        socket.broadcast.emit("placar",placar)
-        console.log(placar)
-
-        // ... Então avisamos a todos sobre a saída do usuário
-        let usuario_sainte = {
-            hora:getTime(), //correto
-            nome:socket.nome,
-             color:socket.color
-            }
-        socket.broadcast.emit("usuario_sainte",usuario_sainte)
-
-    });
-	},
-
-	cleanHistoryPeriodically(){
-		//Removendo do topo do histórico uma frase a cada intervalo de tempo pré determinado
-		setInterval(() => messages.shift(), intervalo_remover_frases);
-	}
-
+    },
 };
