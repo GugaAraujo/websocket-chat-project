@@ -4,6 +4,11 @@ const express = require("express")
 const path = require("path")
 const socketService = require("./services/socket.service")
 
+const db = require("./database/config");
+const mongoose = require("mongoose");
+
+ mongoose.connect(db.dbUrl, { useNewUrlParser: true });
+  
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
@@ -19,23 +24,7 @@ app.use("/",(req, res)=>{
     res.render("index.html")
 })
 
-io.on("connection",socket =>{
-
-    socketService.checkTotalUsers()
-
-    socketService.sendsTotalUsers(socket)
-
-    socketService.newUser(socket)
-
-    socketService.sendMessageHistory(socket)
-
-    socketService.forwardReceivedMessage(socket)
-
-    socketService.userExit(socket)
-
-    socketService.cleanHistoryPeriodically()
-
-})
+io.on("connection",socket => socketService.socketInit(socket))
 
 server.listen(porta,()=>console.log(`Conectado!`))
 

@@ -229,47 +229,47 @@ p {
   margin-bottom: 8px;
 }
 
-.saudacao {
+.welcomeMessage {
   margin-bottom: 10px;
   color: #034168;
   font-size: 14px;
 }
 @media (max-width: 319.9px) {
-  .saudacao {
+  .welcomeMessage {
     font-size: 18px;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
-  .saudacao {
+  .welcomeMessage {
     font-size: 18px;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
-  .saudacao {
+  .welcomeMessage {
     font-size: 18px;
   }
 }
 
-.aviso {
+.historyRemovalAlert {
   margin-bottom: 10px;
   line-height: 15px;
   color: #a2a2a2;
   font-size: 12px;
 }
 @media (max-width: 319.9px) {
-  .aviso {
+  .historyRemovalAlert {
     font-size: 16px;
     line-height: 18px;
   }
 }
 @media (min-width: 320px) and (max-width: 419.9px) {
-  .aviso {
+  .historyRemovalAlert {
     line-height: 18px;
     font-size: 16px;
   }
 }
 @media (min-width: 420px) and (max-width: 599.9px) {
-  .aviso {
+  .historyRemovalAlert {
     line-height: 18px;
     font-size: 16px;
   }
