@@ -1,7 +1,7 @@
 
-    let dataAtual = new Date();
-    let hora = dataAtual.toLocaleTimeString()   
-
+function getTime(){
+	return new Date().toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo'})
+}
 
 let conexao = false
 //formulário do Modal
@@ -216,7 +216,7 @@ function enviar_mensagem(event){
  
         if(message.value.length>0&&nome.value.length>0){
             msgm_erro_form.style.display = "none"
-            render_mensagem(messageObject,cor_escolhida,hora)
+            render_mensagem(messageObject,cor_escolhida,getTime())
 
             socket.emit('sendMessage', messageObject)
             message.value =""
