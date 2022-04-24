@@ -15,6 +15,7 @@ const welcomeMessage = `Seja bem vindo! &#128516`
 const historyRemovalAlert = `A cada ${phraseRemovalRange/60000} minutos, uma frase é removida no histórico do chat. Nada ficará gravado por muito tempo.`
 
 async function newRecord(newRecord){
+    scoreboard.record++
 	await Record.findOneAndUpdate({"record":newRecord})
 }
 
@@ -33,6 +34,7 @@ function checkTotalUsers(socket){
         : scoreboard.record = result[0].record
     })
     .then(() => {
+        console.log(scoreboard.total, scoreboard.record)
         scoreboard.total > scoreboard.record ? newRecord(scoreboard.total) : ''
     })
     .then(()=> sendsTotalUsers(socket))
