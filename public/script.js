@@ -183,7 +183,7 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
             render_mensagem(message,message.color,message.hora)
         })
 
-        socket.on('historyRemovalAlert_newUser', (enteredUser) =>{
+        socket.on('alert_newUser', (enteredUser) =>{
             $('.caixa_chat').append(`<div class="historyRemovalAlert"><span style="color:#a2a2a2;font-size:12px">${enteredUser.hora} - </span><span style="color:${enteredUser.color}"><b>${enteredUser.name}</b></span><span> entrou na sala</span></div>`)
         })
 
