@@ -4,6 +4,8 @@ const Record = require("../model/record.model")
 // Histórico de mensagens
 let messages = [];
 
+let usersOnline = [];
+
 //Criando Objeto scoreboard, incluindo as contagens
 let scoreboard = {
 	total: 0,
@@ -34,7 +36,6 @@ function checkTotalUsers(socket){
         : scoreboard.record = result[0].record
     })
     .then(() => {
-        console.log(scoreboard.total, scoreboard.record)
         scoreboard.total > scoreboard.record ? newRecord(scoreboard.total) : ''
     })
     .then(()=> sendsTotalUsers(socket))
@@ -46,6 +47,15 @@ function sendsTotalUsers(socket){
     //emitindo a todos a contagem, a cada entering de usuário
     socket.emit("scoreboard",scoreboard)
     socket.broadcast.emit("scoreboard",scoreboard)	
+}
+
+function updateUsersOnline(socket){
+    usersOnline.push({name:socket.name,id:socket.id})
+    console.log(usersOnline)
+
+    socket.broadcast.emit('historyRemovalAlert',usersOnline)
+
+    
 }
 
 function newUser(socket){
@@ -61,7 +71,8 @@ function newUser(socket){
             color:newUser.color
         }
 
-        socket.broadcast.emit('historyRemovalAlert_newUser',enteredUser)
+        socket.broadcast.emit('alert_newUser',enteredUser)
+        updateUsersOnline(socket)
     })
 
 }
