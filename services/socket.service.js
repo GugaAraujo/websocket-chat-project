@@ -1,10 +1,9 @@
-
 const Record = require("../model/record.model")
+const User = require("../model/user.model")
+const Message = require("../model/message.model")
 
-// Histórico de mensagens
-let messages = [];
-
-let usersOnline = [];
+let allMessagesSent = [];
+let usersConnectedNow = [];
 
 //Criando Objeto scoreboard, incluindo as contagens
 let scoreboard = {
@@ -49,53 +48,40 @@ function sendsTotalUsers(socket){
     socket.broadcast.emit("scoreboard",scoreboard)	
 }
 
-function updateUsersOnline(socket){
-    usersOnline.push({name:socket.name,id:socket.id})
-    console.log(usersOnline)
-
-    socket.broadcast.emit('historyRemovalAlert',usersOnline)
-
-    
+function updateUsersConnectedNow(socket){
+    usersConnectedNow.push({name:socket.name,id:socket.id})
+    socket.broadcast.emit('usersConnectedNow',usersConnectedNow)   
 }
 
 function newUser(socket){
     socket.on('enteredUser', newUser =>{
 
-        socket.name=newUser.name
-        socket.color=newUser.color
+        socket.name = newUser.name
+        socket.color = newUser.color
 
-        enteredUser =
-        {
-            hora:getTime(),
-            name:newUser.name,
-            color:newUser.color
-        }
+        const enteredUser = new User(newUser.name, newUser.color, getTime())
 
         socket.broadcast.emit('alert_newUser',enteredUser)
-        updateUsersOnline(socket)
+        updateUsersConnectedNow(socket)
     })
 
 }
 
 function sendMessageHistory(socket){
     //Enviando histórico, saudação e historyRemovalAlert sobre o histórico ao usuário recém chegado
-    socket.emit('PreviousMessages',messages)
+    socket.emit('PreviousMessages', allMessagesSent)
     socket.emit('entering',welcomeMessage)
-    setTimeout(() => socket.emit('historyRemovalAlert',historyRemovalAlert),2000)	
+    setTimeout(() => socket.emit('historyRemovalAlert', historyRemovalAlert),2000)	
 }
 
 function forwardReceivedMessage(socket){
     //Ao receber mensagem, enviamos ao histórico temporário, exibimos no serivor e reenviamos a todos
     socket.on('sendMessage', newMessage =>{
 
-        newMessage = {
-            name: newMessage.name,
-            message: newMessage.message,
-            color: newMessage.color,
-            hora: getTime()
-        }
-        messages.push(newMessage)
-        socket.broadcast.emit('receivedMessage',newMessage)
+        const message = new Message(newMessage.name, newMessage.message, newMessage.color, getTime())
+        
+        allMessagesSent.push(message)
+        socket.broadcast.emit('receivedMessage',message)
     })
 }
 
@@ -109,19 +95,14 @@ socket.on('disconnect', function() {
     socket.broadcast.emit("scoreboard",scoreboard)
 
     // ... Então avisamos a todos sobre a saída do usuário
-    let outgoingUser = {
-        hora:getTime(), 
-        name:socket.name,
-         color:socket.color
-        }
+    const outgoingUser = new User(socket.name, socket.color, getTime())
     socket.broadcast.emit("outgoingUser",outgoingUser)
-
 });
 }
 
 function cleanHistoryPeriodically(){
     //Removendo do topo do histórico uma frase a cada intervalo de tempo pré determinado
-    setInterval(() => messages.shift(), phraseRemovalRange);
+    setInterval(() => allMessagesSent.shift(), phraseRemovalRange);
 }
 
 module.exports = {
