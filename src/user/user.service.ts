@@ -6,10 +6,17 @@ export class UserService {
 
     public users: Array<User> = []
 
-    public insertNewUser(user) {
+    public insertNewUser(user): void {
         this.users.push(user)
-        console.log(`New user insert: ${this.users.reverse()[0].name}`)
-        return this.users
+    }
+
+    public userExit(clientId: string): void {
+        this.users = this.users.filter(user => user.id !== clientId)
+    }
+
+    public getUser(clientId: string): User {
+        const client = this.users.filter(user => user.id === clientId)[0]
+        return client
     }
 
 }

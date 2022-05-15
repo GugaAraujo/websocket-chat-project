@@ -3,6 +3,6 @@ module.exports = class Message {
         this.name = name;
         this.message = message;
         this.color = color;
-        this.hora = date
+        this.time = date
     }
 }
