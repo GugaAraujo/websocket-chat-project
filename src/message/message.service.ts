@@ -2,10 +2,6 @@ import { Message } from "./message.entity";
 import { MessageGateway } from "./message.gateway";
 
 export class MessageService {
-    
-    constructor(   
-        private messageGateway: MessageGateway
-    ){}
 
     public allMessages: Array<Message> = []
 
@@ -14,8 +10,6 @@ export class MessageService {
     }
 
     public getAllMessages(): Message[] {
-        console.log(this.allMessages)
-        console.log(this.messageGateway)
         return this.allMessages
     }
 

@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { Socket } from 'socket.io';
 import { User } from "src/user/user.entity";
 import { AlertGateway } from "./alert.gateway";
 
@@ -9,21 +10,21 @@ export class AlertService {
         private alertGateway: AlertGateway
     ){}
 
-    public sendWelcomeMesage(client: User): void {
-        const welcomeMessage = `Olá, ${client.name}! &#128516`
+    public sendWelcomeMesage(client: Socket, userName): void {
+        const welcomeMessage = `Olá, ${userName}! &#128516`
         this.alertGateway.sendWelcomeMesage(client, welcomeMessage)
     }
 
-    public newUserAlert(client: User): void{
+    public newUserAlert(client: Socket): void{
         this.alertGateway.newUserAlert(client)  
     }
 
-    public reconnectedUserAlert(client: User): void {
+    public reconnectedUserAlert(client: Socket, reconnectedUser: User): void {
         const reconnectedUserAlert = `reconectou ao chat.`
-        this.alertGateway.reconnectedUserAlert(client, reconnectedUserAlert)
+        this.alertGateway.reconnectedUserAlert(client, reconnectedUser, reconnectedUserAlert)
     }
 
-    public historyRemovalAlert(client: User): void{
+    public historyRemovalAlert(client: Socket): void{
         const phraseRemovalRange = 120000
         const historyRemovalAlert = 
         `A cada ${phraseRemovalRange/60000} minutos, uma frase é removida no histórico do chat. 

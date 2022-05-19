@@ -1,6 +1,7 @@
 import { WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import { User } from 'src/user/user.entity';
+import { UserService } from 'src/user/user.service';
 
 @WebSocketGateway() 
 
@@ -8,46 +9,30 @@ export class AlertGateway {
 
     @WebSocketServer() server: Server; 
 
-    public sendWelcomeMesage(client: User,welcomeMessage: string): void{
-        this.sendToSpecificClient(client, 'entering', welcomeMessage)
+    constructor(
+        private userService: UserService
+    ){}
+
+    public sendWelcomeMesage(client: Socket, welcomeMessage: string): void{
+        client.emit('entering', welcomeMessage)
     }
 
-    public newUserAlert(client: User): void {
-        this.dontSendToSpecificClient( client, 'alert_newUser', client)  
+    public newUserAlert(client: Socket): void {
+        const newUser = this.userService.getUser(client.id)
+        client.broadcast.emit('alert_newUser', newUser)
     }
 
-    public reconnectedUserAlert(client: User, alert: string): void {
-        this.sendToSpecificClient(client, 'entering', `Você ${alert}`)
-        this.dontSendToSpecificClient(client, 'entering', `${client.name} ${alert}`)
+    public reconnectedUserAlert(client: Socket, reconnectedUser: User, alert: string): void {
+        client.emit('entering', `Você ${alert}`)
+        client.broadcast.emit('entering', `${reconnectedUser.name} ${alert}`)
     }
 
-    public historyRemovalAlert(client: User, historyRemovalAlert: string): void{
-        this.sendToSpecificClient(client, 'historyRemovalAlert', historyRemovalAlert)
+    public historyRemovalAlert(client: Socket, historyRemovalAlert: string): void{
+        client.emit('historyRemovalAlert', historyRemovalAlert)
     }
 
     public outgoingUserAlert(outgoingUser: User): void {
         this.server.emit('outgoingUser', outgoingUser);
     }
-
-    private sendToSpecificClient(client: User, event: string, data: string): void {
-        const allSockets = this.server.sockets.sockets
-        allSockets.forEach(socket => {  
-            if(socket.id === client.id){
-                socket.emit(event, data);
-            }
-        })
-    }
-
-    private dontSendToSpecificClient(client: User, event: string, data: string | object): void {
-        const allSockets = this.server.sockets.sockets
-        allSockets.forEach(socket => {  
-            if(socket.id !== client.id){
-                socket.emit(event, data);
-            }
-        })
-    }
-    
-
-
 
 }

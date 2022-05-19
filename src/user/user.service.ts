@@ -19,6 +19,10 @@ export class UserService {
         return client
     }
 
+    public getAllUsers(): User[] {
+        return this.users
+    }
+
     public checkIfUserHasId(clientId: string): boolean {
         return this.getUser(clientId)
         ? true : false

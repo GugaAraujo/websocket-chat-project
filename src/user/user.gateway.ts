@@ -25,10 +25,10 @@ export class UserGateway {
     enteredUser(client: Socket, text: User): void {
         const newUser = new User(client.id, text.name, text.color, this.getTime())
         this.userService.insertNewUser(newUser)
-        this.messageGateway.sendAllMessages(newUser)
-        this.alertService.newUserAlert(newUser)
-        this.alertService.sendWelcomeMesage(newUser)
-        this.alertService.historyRemovalAlert(newUser)
+        this.messageGateway.sendAllMessages(client)
+        this.alertService.newUserAlert(client)
+        this.alertService.sendWelcomeMesage(client, newUser.name)
+        this.alertService.historyRemovalAlert(client)
     }
 
   public userExit(client: Socket): void{

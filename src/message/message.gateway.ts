@@ -1,18 +1,19 @@
 
 import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
-import { Server } from 'socket.io';
+import { Socket, Server } from 'socket.io';
 import { AlertService } from 'src/alert/alert.service';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { Message } from './message.entity';
-import { Socket } from 'socket.io';
 import { MessageService } from './message.service';
-import { Injectable } from '@nestjs/common';
+
 
 
 @WebSocketGateway()
 export class MessageGateway {
-    @WebSocketServer() server: Server; 
+    @WebSocketServer() 
+    server: Server; 
+    socket: Socket; 
 
     constructor(     
         private userService: UserService,
@@ -27,18 +28,16 @@ export class MessageGateway {
 
         if(!userHasId){
             const reconnectedUser = new User(client.id, messageSent.name, messageSent.color)
-            this.alertService.reconnectedUserAlert(reconnectedUser)
+            this.alertService.reconnectedUserAlert(client, reconnectedUser)
             this.userService.insertNewUser(reconnectedUser)
         }
-
-        const whoSentTheMessage = this.userService.getUser(client.id)
-        this.dontSendToSpecificClient(whoSentTheMessage, 'receivedMessage', newMessage)
+        client.broadcast.emit('receivedMessage', newMessage)
         this.messageService.insertNewMessage(newMessage)
     }
 
-    public sendAllMessages(client: User): void {
+    public sendAllMessages(client: Socket): void {
         const allMessages = this.messageService.getAllMessages()
-        this.sendToSpecificClient(client, 'PreviousMessages', allMessages) 
+        client.emit('PreviousMessages', allMessages)
     }
 
 
