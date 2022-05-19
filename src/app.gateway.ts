@@ -22,7 +22,6 @@ export class AppGateway
     }
 
     handleConnection(client: Socket, ...args: any[]): void {
-        client.broadcast.emit('entering',"E AEEE")
         this.logger.log(`Client connected: ${client.id}`)
     }
   
