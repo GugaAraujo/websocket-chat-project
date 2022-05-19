@@ -6,6 +6,7 @@ import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { Message } from './message.entity';
 import { MessageService } from './message.service';
+import { getTime } from 'src/utils/utils';
 
 
 
@@ -23,7 +24,7 @@ export class MessageGateway {
 
     @SubscribeMessage('sendMessage')
     sendMessage(client: Socket, messageSent: Message): void {
-        const newMessage = new Message(messageSent.name, messageSent.message, messageSent.color, this.getTime())
+        const newMessage = new Message(messageSent.name, messageSent.message, messageSent.color, getTime())
         const userHasId = this.userService.checkIfUserHasId(client.id)
 
         if(!userHasId){
@@ -40,41 +41,4 @@ export class MessageGateway {
         client.emit('PreviousMessages', allMessages)
     }
 
-
-    // MELHORAR O GET TIME
-
-    // MElhorar Mensagens emit para um unico user e para todos, excluindo o client
-
-
-
-
-
-
-
-
-    private sendToSpecificClient(client: User, event: string, data: string | Array<any>): void {
-        const allSockets = this.server.sockets.sockets
-        allSockets.forEach(socket => {  
-            if(socket.id === client.id){
-                socket.emit(event, data);
-            }
-        })
-    }
-
-    private dontSendToSpecificClient(client: User, event: string, data: string | object): void {
-        const allSockets = this.server.sockets.sockets
-        allSockets.forEach(socket => {  
-            if(socket.id !== client.id){
-                socket.emit(event, data);
-            }
-        })
-    }
-    public getTime(): string {
-        return new Date().toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo'})
-    }
-
-
-
-
-    
 }
