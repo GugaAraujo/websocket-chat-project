@@ -18,6 +18,11 @@ export class AlertService {
         this.alertGateway.newUserAlert(client)  
     }
 
+    public reconnectedUserAlert(client: User): void {
+        const reconnectedUserAlert = `reconectou ao chat.`
+        this.alertGateway.reconnectedUserAlert(client, reconnectedUserAlert)
+    }
+
     public historyRemovalAlert(client: User): void{
         const phraseRemovalRange = 120000
         const historyRemovalAlert = 

@@ -12,15 +12,20 @@ export class AlertGateway {
         this.sendToSpecificClient(client, 'entering', welcomeMessage)
     }
 
-    public newUserAlert(client: User): void{
+    public newUserAlert(client: User): void {
         this.dontSendToSpecificClient( client, 'alert_newUser', client)  
+    }
+
+    public reconnectedUserAlert(client: User, alert: string): void {
+        this.sendToSpecificClient(client, 'entering', `Você ${alert}`)
+        this.dontSendToSpecificClient(client, 'entering', `${client.name} ${alert}`)
     }
 
     public historyRemovalAlert(client: User, historyRemovalAlert: string): void{
         this.sendToSpecificClient(client, 'historyRemovalAlert', historyRemovalAlert)
     }
 
-    public outgoingUserAlert(outgoingUser: User): void{
+    public outgoingUserAlert(outgoingUser: User): void {
         this.server.emit('outgoingUser', outgoingUser);
     }
 

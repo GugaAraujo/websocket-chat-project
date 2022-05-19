@@ -6,7 +6,7 @@ export class UserService {
 
     public users: Array<User> = []
 
-    public insertNewUser(user): void {
+    public insertNewUser(user: User): void {
         this.users.push(user)
     }
 
@@ -17,6 +17,11 @@ export class UserService {
     public getUser(clientId: string): User {
         const client = this.users.filter(user => user.id === clientId)[0]
         return client
+    }
+
+    public checkIfUserHasId(clientId: string): boolean {
+        return this.getUser(clientId)
+        ? true : false
     }
 
 }
