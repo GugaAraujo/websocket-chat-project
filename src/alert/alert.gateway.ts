@@ -17,6 +17,10 @@ export class AlertGateway {
         client.emit('entering', welcomeMessage)
     }
 
+    public updateUserList(client: Socket, allUsers: User[]): void {
+        client.emit('sendAllUsers', allUsers)
+    }
+
     public newUserAlert(client: Socket): void {
         const newUser = this.userService.getUser(client.id)
         client.broadcast.emit('alert_newUser', newUser)

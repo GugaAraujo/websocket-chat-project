@@ -10,9 +10,13 @@ export class AlertService {
         private alertGateway: AlertGateway
     ){}
 
-    public sendWelcomeMesage(client: Socket, userName): void {
+    public sendWelcomeMesage(client: Socket, userName: string): void {
         const welcomeMessage = `Olá, ${userName}! &#128516`
         this.alertGateway.sendWelcomeMesage(client, welcomeMessage)
+    }
+
+    public updateUserList(client: Socket, allUsers: User[]): void {
+        this.alertGateway.updateUserList(client, allUsers)
     }
 
     public newUserAlert(client: Socket): void{

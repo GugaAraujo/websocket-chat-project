@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { Socket } from 'socket.io';
 import { AlertService } from 'src/alert/alert.service';
 import { MessageGateway } from 'src/message/message.gateway';
-import { getTime } from 'src/utils/utils'
+import { getTime, log } from 'src/utils/utils'
 
 @WebSocketGateway()
 export class UserGateway {
@@ -22,6 +22,7 @@ export class UserGateway {
     enteredUser(client: Socket, text: User): void {
         const newUser = new User(client.id, text.name, text.color, getTime())
         this.userService.insertNewUser(newUser)
+        this.updateUserList(client)
         this.messageGateway.sendAllMessages(client)
         this.alertService.newUserAlert(client)
         this.alertService.sendWelcomeMesage(client, newUser.name)
@@ -34,6 +35,12 @@ export class UserGateway {
         outgoingUser.time = getTime()
         this.userService.userExit(client.id)
         this.alertService.outgoingUserAlert(outgoingUser)
+        this.updateUserList(client)
     }
   }
+
+    private updateUserList(client: Socket) {
+        const allUsers = this.userService.getAllUsers()
+        this.alertService.updateUserList(client, allUsers)
+    }
 }
