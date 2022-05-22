@@ -1,5 +1,4 @@
 import { Message } from "./message.entity";
-import { MessageGateway } from "./message.gateway";
 
 export class MessageService {
 
@@ -14,7 +13,7 @@ export class MessageService {
     }
 
     public cleanHistoryPeriodically(): void{
-        setInterval(() => this.allMessages.shift(), (1000 * 60 * 2));
+        setInterval(() => this.allMessages.shift(), Number(process.env.phraseRemovalRange));
     }
   
 }

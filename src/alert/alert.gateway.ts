@@ -2,6 +2,8 @@ import { WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
+import { intervalBeforeSending } from 'src/decorators/interval-before-sending';
+import { getTime, log } from 'src/utils/utils'
 
 @WebSocketGateway() 
 
@@ -15,6 +17,11 @@ export class AlertGateway {
 
     public sendWelcomeMesage(client: Socket, welcomeMessage: string): void{
         client.emit('entering', welcomeMessage)
+    }
+
+    public sendScoreboard(client: Socket, scoreboard: Object): void {
+        client.broadcast.emit('scoreboard', scoreboard)
+        client.emit('scoreboard', scoreboard)
     }
 
     public updateUserList(client: Socket, allUsers: User[]): void {
@@ -31,6 +38,7 @@ export class AlertGateway {
         client.broadcast.emit('entering', `${reconnectedUser.name} ${alert}`)
     }
 
+    @intervalBeforeSending
     public historyRemovalAlert(client: Socket, historyRemovalAlert: string): void{
         client.emit('historyRemovalAlert', historyRemovalAlert)
     }

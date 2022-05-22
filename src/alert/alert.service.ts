@@ -15,6 +15,10 @@ export class AlertService {
         this.alertGateway.sendWelcomeMesage(client, welcomeMessage)
     }
 
+    public sendScoreboard(client: Socket, scoreboard: Object): void {
+        this.alertGateway.sendScoreboard(client, scoreboard)
+    }
+
     public updateUserList(client: Socket, allUsers: User[]): void {
         this.alertGateway.updateUserList(client, allUsers)
     }
@@ -29,7 +33,7 @@ export class AlertService {
     }
 
     public historyRemovalAlert(client: Socket): void{
-        const phraseRemovalRange = 120000
+        const phraseRemovalRange = Number(process.env.phraseRemovalRange)
         const historyRemovalAlert = 
         `A cada ${phraseRemovalRange/60000} minutos, uma frase é removida no histórico do chat. 
         Nada ficará gravado por muito tempo.`  
