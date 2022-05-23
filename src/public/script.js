@@ -175,20 +175,20 @@ const socket = io(location.origin.replace(/^http/, 'ws'))
 
         socket.on("PreviousMessages", function(messages){
             for (message of messages){
-                render_mensagem(message,message.color,message.hora)
+                render_mensagem(message,message.color,message.time)
             }
         })
 
         socket.on("receivedMessage", function(message){
-            render_mensagem(message,message.color,message.hora)
+            render_mensagem(message,message.color,message.time)
         })
 
         socket.on('alert_newUser', (enteredUser) =>{
-            $('.caixa_chat').append(`<div class="historyRemovalAlert"><span style="color:#a2a2a2;font-size:12px">${enteredUser.hora} - </span><span style="color:${enteredUser.color}"><b>${enteredUser.name}</b></span><span> entrou na sala</span></div>`)
+            $('.caixa_chat').append(`<div class="historyRemovalAlert"><span style="color:#a2a2a2;font-size:12px">${enteredUser.time} - </span><span style="color:${enteredUser.color}"><b>${enteredUser.name}</b></span><span> entrou na sala</span></div>`)
         })
 
         socket.on('outgoingUser', (outgoingUser) =>{
-            $('.caixa_chat').append(`<div class="historyRemovalAlert"><span style="color:#a2a2a2;font-size:12px">${outgoingUser.hora} - </span><span style="color:${outgoingUser.color}"><b>${outgoingUser.name}</b></span><span> saiu da sala</span></div>`)
+            $('.caixa_chat').append(`<div class="historyRemovalAlert"><span style="color:#a2a2a2;font-size:12px">${outgoingUser.time} - </span><span style="color:${outgoingUser.color}"><b>${outgoingUser.name}</b></span><span> saiu da sala</span></div>`)
         })
 
 
