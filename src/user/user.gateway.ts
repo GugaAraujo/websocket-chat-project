@@ -7,16 +7,16 @@ import { MessageGateway } from 'src/message/message.gateway';
 import { getTime, log } from 'src/utils/utils'
 import { ScoreboardService } from 'src/scoreboard/scoreboard.service';
 
+
 @WebSocketGateway()
 export class UserGateway {
 
-    public user: User;
+    private user: User;
 
     constructor(
         private userService: UserService,
         private alertService: AlertService,
         private messageGateway : MessageGateway,
-        private scoreboardService: ScoreboardService
     
         ) {}
         

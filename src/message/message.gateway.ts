@@ -9,10 +9,9 @@ import { MessageService } from './message.service';
 import { getTime } from 'src/utils/utils';
 
 
-
 @WebSocketGateway()
 export class MessageGateway {
-    @WebSocketServer() 
+    @WebSocketServer()
     server: Server; 
     socket: Socket; 
 
@@ -22,18 +21,26 @@ export class MessageGateway {
         private messageService : MessageService,
     ){}
 
+
     @SubscribeMessage('sendMessage')
     sendMessage(client: Socket, messageSent: Message): void {
         const newMessage = new Message(messageSent.name, messageSent.message, messageSent.color, getTime())
         const userHasId = this.userService.checkIfUserHasId(client.id)
 
-        if(!userHasId){
-            const reconnectedUser = new User(client.id, messageSent.name, messageSent.color)
-            this.alertService.reconnectedUserAlert(client, reconnectedUser)
-            this.userService.insertNewUser(reconnectedUser)
+        if(userHasId){
+            client.broadcast.emit('receivedMessage', newMessage)
+            this.messageService.insertNewMessage(newMessage)
         }
-        client.broadcast.emit('receivedMessage', newMessage)
-        this.messageService.insertNewMessage(newMessage)
+        else{
+            this.reconnectingUser(client, messageSent)
+        }
+    
+    }
+
+    private reconnectingUser(client: Socket, messageSent): void{
+        const reconnectedUser = new User(client.id, messageSent.name, messageSent.color)
+        this.alertService.reconnectedUserAlert(client, reconnectedUser)
+        this.userService.insertNewUser(reconnectedUser)
     }
 
     public sendAllMessages(client: Socket): void {

@@ -4,6 +4,9 @@ import { Socket, Server } from 'socket.io';
 import { MessageService } from './message/message.service';
 import { UserGateway } from './user/user.gateway';
 import { getTime, log } from 'src/utils/utils'
+import { UserService } from './user/user.service';
+import { intervalBeforeSending } from './decorators/interval-before-sending';
+import { userIsRegistered } from './decorators/user-is-registered';
 
 @WebSocketGateway({ cors: true })
 
@@ -12,7 +15,8 @@ export class AppGateway
 {
     constructor(
         private userGateway: UserGateway,
-        private messageService: MessageService
+        private messageService: MessageService,
+        private userService: UserService
     ){}
 
     private logger: Logger = new Logger('AppGateway');
@@ -22,7 +26,11 @@ export class AppGateway
         this.messageService.cleanHistoryPeriodically()
     }
 
+    @intervalBeforeSending
+    @userIsRegistered("O servidor foi reiniciado. Entre novamente.")
     handleConnection(client: Socket, ...args: any[]): void {
+        
+        //this.userIsRegistered(client)
         this.logger.log(`Client connected: ${client.id}`)
     }
   

@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppGateway } from './app.gateway';
-import { UserModule } from './user/user.model';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AlertModule } from './alert/alert.model';
-import { MessageModule } from './message/message.model';
 import { UserService } from './user/user.service';
 import { MessageService } from './message/message.service';
 import { AlertService } from './alert/alert.service';

@@ -1,5 +1,4 @@
 import { Global, Module } from "@nestjs/common";
-import { UserModule } from "src/user/user.model";
 import { MessageGateway } from "./message.gateway";
 import { MessageService } from "./message.service";
 
