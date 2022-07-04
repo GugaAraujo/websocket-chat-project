@@ -21,8 +21,8 @@ export class UserGateway {
         ) {}
         
     @SubscribeMessage('enteredUser')
-    enteredUser(client: Socket, text: User): void {
-        const newUser = new User(client.id, text.name, text.color, getTime())
+    enteredUser(client: Socket, user: User): void {
+        const newUser = new User(client.id, user.name, user.color, getTime(), user.avatar)
         this.userService.insertNewUser(newUser)
         this.updateUserList(client)
         this.messageGateway.sendAllMessages(client)

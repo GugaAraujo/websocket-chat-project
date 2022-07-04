@@ -24,7 +24,7 @@ export class MessageGateway {
 
     @SubscribeMessage('sendMessage')
     sendMessage(client: Socket, messageSent: Message): void {
-        const newMessage = new Message(messageSent.name, messageSent.message, messageSent.color, getTime())
+        const newMessage = new Message(messageSent.name, messageSent.message, messageSent.color, getTime(), messageSent.avatar)
         const userHasId = this.userService.checkIfUserHasId(client.id)
 
         if(userHasId){
