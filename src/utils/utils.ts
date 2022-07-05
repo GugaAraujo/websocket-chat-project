@@ -1,5 +1,5 @@
-function getTime(): string {
-    return new Date().toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo'})
+function getTime(): Date {
+    return new Date()
 }
 
 function log(...args): void{

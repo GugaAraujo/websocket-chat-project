@@ -3,7 +3,7 @@ export class Message {
         public name : string,
         public message : string,
         public color : string,
-        public time: string,
+        public time: Date,
         public avatar?: string
     ){}
 }
