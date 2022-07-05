@@ -11,7 +11,7 @@ export class AlertService {
     ){}
 
     public sendWelcomeMesage(client: Socket, userName: string): void {
-        const welcomeMessage = `Olá, ${userName}! &#128516`
+        const welcomeMessage = `Olá, ${userName}! 👋`
         this.alertGateway.sendWelcomeMesage(client, welcomeMessage)
     }
 
