@@ -23,6 +23,7 @@ export class UserGateway {
     @SubscribeMessage('enteredUser')
     enteredUser(client: Socket, user: User): void {
         const newUser = new User(client.id, user.name, user.color, getTime(), user.avatar)
+        client.emit('registeredWithID', client.id)
         this.userService.insertNewUser(newUser)
         this.updateUserList(client)
         this.messageGateway.sendAllMessages(client)

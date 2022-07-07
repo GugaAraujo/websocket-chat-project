@@ -25,6 +25,7 @@ export class AlertGateway {
     }
 
     public updateUserList(client: Socket, allUsers: User[]): void {
+        client.broadcast.emit('sendAllUsers', allUsers)
         client.emit('sendAllUsers', allUsers)
     }
 
