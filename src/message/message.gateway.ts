@@ -37,6 +37,11 @@ export class MessageGateway {
     
     }
 
+    @SubscribeMessage('typingAlert')
+    whoIsTyping(client: Socket, messageSent: Message) {
+        client.broadcast.emit('typingAlert', new User(client.id, messageSent.name, messageSent.color))
+    }
+
     private reconnectingUser(client: Socket, messageSent): void{
         const reconnectedUser = new User(client.id, messageSent.name, messageSent.color)
         this.alertService.reconnectedUserAlert(client, reconnectedUser)
