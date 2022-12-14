@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "description": "websocket-Chat Nest - Backend",
   "engines": {
-      "node": "12.22.9",
-      "npm": "6.14.15"
+    "node": "12.22.9",
+    "npm": "6.14.15"
   },
   "author": "Gustavo Araújo",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "node dist/main",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -32,7 +32,6 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "heroku-postbuild": "NODE_ENV=dev npm install --omit --no-shrinkwrap && npm run build"
-    
   },
   "dependencies": {
     "@nestjs/common": "^8.1.1",
