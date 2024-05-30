@@ -5,7 +5,7 @@
   "description": "websocket-Chat Nest - Backend",
   "engines": {
     "node": "12.22.9",
-    "npm": "6.14.15"
+    "npm": ">=6.14.15"
   },
   "author": "Gustavo Araújo",
   "license": "MIT",
